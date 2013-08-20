@@ -1,0 +1,16 @@
+# .gitignore file
+
+# Ignore stupid VS files
+*.sdf
+*.opensdf
+
+# Ignore Release and Debug outputs of solution
+Debug/
+Release/
+
+# Ignore the output builds of the game engine
+PelletQuest/Debug/
+PelletQuest/Release/
+
+# Ignore the references folder that's full of non-essential images
+Resources/References
