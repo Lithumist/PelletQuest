@@ -4,11 +4,13 @@
 	Entry point of the whole program, only invokes the engine.
 */
 
-#include <iostream>
-using namespace std;
+#include "engine.h"
 
 int main()
 {
-	cout << "Hello Fuckers!!\n";
+
+	Engine e;
+	e.Run();
+
 	return 0;
 }
