@@ -47,6 +47,14 @@ void StateMainMenu::OnResume()
 //
 void StateMainMenu::Events()
 {
+
+    sf::Event e;
+    while(engine_m->sfml_window_m.pollEvent(e))
+    {
+        if(e.type == sf::Event::Closed)
+            engine_m->Exit(0);
+    }
+
 }
 
 

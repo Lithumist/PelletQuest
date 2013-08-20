@@ -8,6 +8,8 @@
 
 #include <vector>
 
+#include "SFML/Graphics.hpp"
+
 class State;
 
 class Engine
@@ -44,18 +46,15 @@ public:
 	// The state stack
 	std::vector<State*> states_m;
 
+    // ...
+    sf::RenderWindow sfml_window_m;
+
 protected:
-
-	/////
-	// Methods
-	/////
-
-
 
 	/////
 	// Properties
 	/////
-
+    
 private:
 
     bool running_m;

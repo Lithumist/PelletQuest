@@ -18,6 +18,9 @@ Engine::Engine()
 //
 int Engine::Run(State* initial_state_p)
 {
+    // Initialize SFML
+    sfml_window_m.create(sf::VideoMode(640,480,32),"Pellet Quest!");
+
     // Initialize first state
 	states_m.push_back(initial_state_p);
     initial_state_p->Initialize(this);
@@ -29,12 +32,23 @@ int Engine::Run(State* initial_state_p)
         State* current_state = states_m.back();
         current_state->Events();
         current_state->U(); // update
-        current_state->D(); // draw
+
+        // Draw
+        sfml_window_m.clear(sf::Color::Black);
+        current_state->D();
+        sfml_window_m.display();
     }
 
-    // Game has exites
+
+    // *One of the states exited the game*
+
+
+    // Unitialize all states
     for(unsigned int s=0; s<states_m.size(); s++)
         states_m[s]->Uninitialize();
+
+    // Unitialize SFML
+    sfml_window_m.close();
 
     return return_value_m;
 
