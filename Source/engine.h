@@ -14,12 +14,17 @@ class Engine
 {
 public:
 
+    Engine();
+
 	/////
 	// Interface Methods
 	/////
 
 	// Called by main.cpp to run the engine
 	int Run(State* initial_state_p);
+
+    // Called by a state to exit the game immediately
+    void Exit(int return_code_p);
 
 	// Replaces the current state with a new one
 	void ChangeState(State* new_state_p);
@@ -50,5 +55,10 @@ protected:
 	/////
 	// Properties
 	/////
+
+private:
+
+    bool running_m;
+    int return_value_m;
 
 };

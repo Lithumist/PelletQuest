@@ -13,7 +13,7 @@ class State
 public:
 
 	virtual void Initialize() = 0;
-	virtual void Deinitialize() = 0;
+	virtual void Uninitialize() = 0;
 
 	virtual void OnPause() = 0;
 	virtual void OnResume() = 0;
