@@ -13,10 +13,48 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Framework">
+      <UniqueIdentifier>{122ab33a-8579-40ef-b40e-d7d6dc16a491}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\States">
+      <UniqueIdentifier>{ccff09b2-d1a2-49bf-8217-da750ad90010}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\States\Main Menu">
+      <UniqueIdentifier>{de355fbe-cc1d-4f35-95b5-6cf25a43af0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework">
+      <UniqueIdentifier>{b5fc5783-95fe-4693-ae21-147e75a4cbea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\States">
+      <UniqueIdentifier>{2ad2a970-9242-4587-8a6f-03a5845b97df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\States\Main Menu">
+      <UniqueIdentifier>{7a5fe113-c8cf-4864-929e-04e6002d03bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\engine.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\state.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\state_main_menu.cpp">
+      <Filter>Source Files\States\Main Menu</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Source\engine.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\state.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\state_main_menu.h">
+      <Filter>Header Files\States\Main Menu</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

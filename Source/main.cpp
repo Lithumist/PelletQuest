@@ -5,12 +5,13 @@
 */
 
 #include "engine.h"
+#include "state_main_menu.h"
 
 int main()
 {
 
 	Engine e;
-	e.Run();
+    e.Run(StateMainMenu::GetInstance());
 
 	return 0;
 }

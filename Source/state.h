@@ -6,13 +6,13 @@
 
 #pragma once
 
-// includes here
+#include "engine.h"
 
 class State
 {
 public:
 
-	virtual void Initialize() = 0;
+	virtual void Initialize(Engine* engine_p) = 0;
 	virtual void Uninitialize() = 0;
 
 	virtual void OnPause() = 0;

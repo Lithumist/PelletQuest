@@ -1,6 +1,7 @@
 // Implements engine.h
 
 #include "engine.h"
+#include "state.h"
 
 
 
@@ -19,7 +20,7 @@ int Engine::Run(State* initial_state_p)
 {
     // Initialize first state
 	states_m.push_back(initial_state_p);
-    initial_state_p->Initialize();
+    initial_state_p->Initialize(this);
 
     // Run the main loop
     running_m = true;
@@ -59,7 +60,7 @@ void Engine::ChangeState(State* new_state_p)
     states_m.pop_back();
 
     states_m.push_back(new_state_p);
-    new_state_p->Initialize();
+    new_state_p->Initialize(this);
 }
 
 
@@ -71,7 +72,7 @@ void Engine::PushState(State* new_state_p)
     states_m.back()->Pause();
 
     states_m.push_back(new_state_p);
-    new_state_p->Initialize();
+    new_state_p->Initialize(this);
 }
 
 

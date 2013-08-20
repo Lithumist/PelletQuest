@@ -6,9 +6,9 @@
 
 #pragma once
 
-#include "state.h"
-
 #include <vector>
+
+class State;
 
 class Engine
 {
