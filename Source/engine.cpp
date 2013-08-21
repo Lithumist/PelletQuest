@@ -3,6 +3,8 @@
 #include "engine.h"
 #include "state.h"
 
+#include <iostream>
+
 
 
 // Engine::Engine()
@@ -10,6 +12,7 @@
 Engine::Engine()
 {
     running_m = false;
+    loaded_new_texture_m = true;
 }
 
 
@@ -20,6 +23,14 @@ int Engine::Run(State* initial_state_p)
 {
     // Initialize SFML
     sfml_window_m.create(sf::VideoMode(640,480,32),"Pellet Quest!");
+
+    // Load error texture
+    if(!LoadTexture("resources/textures/error.png"))
+    {
+        std::cout << "FATAL ERROR: Failed to load resources/textures/error.png\n";
+        sfml_window_m.close();
+        return 1;
+    }
 
     // Initialize first state
 	states_m.push_back(initial_state_p);
@@ -99,4 +110,46 @@ void Engine::PopState()
     states_m.pop_back();
 
     states_m.back()->Resume();
+}
+
+
+
+// Engine::LoadTexture()
+//
+bool Engine::LoadTexture(std::string filename_p)
+{
+    if(textures_m.count(filename_p) == 0)
+    {
+        // Load new texture
+        sf::Texture texture;
+        if(!texture.loadFromFile(filename_p))
+        {
+            //std::cout << "ERROR: Failed to load texture '" << filename_p << "'\n"; // Commented out because SFML outputs it's own error
+            return false;
+        }
+
+        textures_m[filename_p] = texture;
+        return true;
+
+    }
+    else // texture already loaded
+        return true;
+}
+
+
+
+// Engine::GetTexture()
+//
+sf::Texture* Engine::GetTexture(std::string filename_p)
+{
+
+    std::map<std::string,sf::Texture>::iterator it = textures_m.find(filename_p);
+    if(it == textures_m.end())
+    {
+        // Return error texture to prevent crashing
+        return &textures_m["resources/textures/error.png"];
+    }
+    else
+        return &textures_m[filename_p]; // return texture
+
 }

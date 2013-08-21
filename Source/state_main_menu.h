@@ -32,7 +32,8 @@ protected:
 private:
 
     static StateMainMenu instance_m;
-
     Engine* engine_m;
+
+    sf::Sprite spr_title_m;
 
 };

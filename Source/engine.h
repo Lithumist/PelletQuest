@@ -7,6 +7,8 @@
 #pragma once
 
 #include <vector>
+#include <string>
+#include <map>
 
 #include "SFML/Graphics.hpp"
 
@@ -37,6 +39,12 @@ public:
 	// Pops the current state from the stack and switches to the one that was under it
 	void PopState();
 
+    // Loads an SFML texture (Doesn't load same texture twice)
+    bool LoadTexture(std::string filename_p);
+
+    // Returns a pointer to an SFML texture already loaded (Returns NULL on error)
+    sf::Texture* GetTexture(std::string filename_p);
+
 
 
 	/////
@@ -59,5 +67,8 @@ private:
 
     bool running_m;
     int return_value_m;
+    bool loaded_new_texture_m;
+
+    std::map<std::string, sf::Texture> textures_m;
 
 };

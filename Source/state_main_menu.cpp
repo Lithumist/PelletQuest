@@ -13,7 +13,12 @@ StateMainMenu StateMainMenu::instance_m;
 void StateMainMenu::Initialize(Engine* engine_p)
 {
     engine_m = engine_p;
-    std::cout << "Initialize.\n";
+    
+    // Load all textures
+    engine_m->LoadTexture("resources/textures/title.png");
+
+    // Configure all sprites
+    spr_title_m.setTexture(*engine_m->GetTexture("resources/textures/title.png"));
 }
 
 
@@ -71,4 +76,5 @@ void StateMainMenu::Update()
 //
 void StateMainMenu::Draw()
 {
+    engine_m->sfml_window_m.draw(spr_title_m);
 }
