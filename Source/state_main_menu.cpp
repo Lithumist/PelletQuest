@@ -1,6 +1,7 @@
 // Implements state_main_menu.h
 
 #include "state_main_menu.h"
+#include "state_gameplay.h"
 
 #include <iostream>
 
@@ -27,7 +28,6 @@ void StateMainMenu::Initialize(Engine* engine_p)
 //
 void StateMainMenu::Uninitialize()
 {
-    std::cout << "Uninitialize.\n";
 }
 
 
@@ -62,6 +62,7 @@ void StateMainMenu::Events()
         if(e.type == sf::Event::KeyPressed && e.key.code == sf::Keyboard::S)
         {
             // Temp new game start
+            engine_m->ChangeState(StateGameplay::GetInstance());
         }
     }
 

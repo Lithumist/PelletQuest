@@ -31,6 +31,12 @@
     <Filter Include="Source Files\States\Main Menu">
       <UniqueIdentifier>{7a5fe113-c8cf-4864-929e-04e6002d03bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\States\Gameplay">
+      <UniqueIdentifier>{da910df2-9b7c-440d-99c8-872565fd7f0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\States\Gameplay">
+      <UniqueIdentifier>{aee2984d-f033-4693-8d0c-84ab19fa1de9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\main.cpp">
@@ -45,6 +51,12 @@
     <ClCompile Include="..\Source\state_main_menu.cpp">
       <Filter>Source Files\States\Main Menu</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\state_gameplay.cpp">
+      <Filter>Source Files\States\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\level.cpp">
+      <Filter>Source Files\States\Gameplay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\engine.h">
@@ -55,6 +67,12 @@
     </ClInclude>
     <ClInclude Include="..\Source\state_main_menu.h">
       <Filter>Header Files\States\Main Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\state_gameplay.h">
+      <Filter>Header Files\States\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\level.h">
+      <Filter>Header Files\States\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

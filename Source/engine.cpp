@@ -22,7 +22,7 @@ Engine::Engine()
 int Engine::Run(State* initial_state_p)
 {
     // Initialize SFML
-    sfml_window_m.create(sf::VideoMode(640,480,32),"Pellet Quest!");
+    sfml_window_m.create(sf::VideoMode(640,480,32),"Pellet Quest!",sf::Style::Close);
 
     // Load error texture
     if(!LoadTexture("resources/textures/error.png"))

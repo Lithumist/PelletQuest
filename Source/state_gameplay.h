@@ -7,6 +7,7 @@
 #pragma once
 
 #include "state.h"
+#include "level.h"
 
 class StateGameplay : public State
 {
@@ -33,5 +34,7 @@ private:
 
     static StateGameplay instance_m;
     Engine* engine_m;
+
+    Level level_m;
 
 };
