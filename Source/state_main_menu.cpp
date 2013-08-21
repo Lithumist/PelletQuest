@@ -58,6 +58,11 @@ void StateMainMenu::Events()
     {
         if(e.type == sf::Event::Closed)
             engine_m->Exit(0);
+
+        if(e.type == sf::Event::KeyPressed && e.key.code == sf::Keyboard::S)
+        {
+            // Temp new game start
+        }
     }
 
 }
