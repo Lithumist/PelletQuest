@@ -14,11 +14,12 @@ void StateGameplay::Initialize(Engine* engine_p)
 {
     engine_m = engine_p;
 
-    // load the tiles
+    // load all game textures
     engine_m->LoadTexture("resources/textures/tiles.png");
+    engine_m->LoadTexture("resources/textures/player.png");
 
     // Load a test map
-    level_m.LoadFromFile("resources/maps/test.txt");
+    level_m.LoadFromFile("resources/maps/test.txt", engine_p);
 }
 
 
@@ -27,7 +28,6 @@ void StateGameplay::Initialize(Engine* engine_p)
 //
 void StateGameplay::Uninitialize()
 {
-    std::cout << "Uninitialize.\n";
 }
 
 

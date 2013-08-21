@@ -8,6 +8,7 @@
 #pragma once
 
 #include "engine.h"
+#include "player.h"
 
 #include <string>
 
@@ -19,14 +20,18 @@ class Level
 public:
 
     Level();
-    Level(std::string filename_p);
+    Level(std::string filename_p, Engine* engine_p);
 
-    bool LoadFromFile(std::string filename_p);
+    bool LoadFromFile(std::string filename_p, Engine* engine_p);
     void Clear();
 
     void Events();
     void Update();
     void Draw(Engine* engine_p);
+
+
+
+    Player player_m;
 
 protected:
 

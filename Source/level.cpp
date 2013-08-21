@@ -21,27 +21,29 @@ Level::Level()
 
 // Level::Level()
 //
-Level::Level(std::string filename_p)
+Level::Level(std::string filename_p, Engine* engine_p)
 {
     Clear();
     CalculateTileRects();
-    LoadFromFile(filename_p);
+    LoadFromFile(filename_p, engine_p);
 }
 
 
 
 // Level::LoadFromFile()
 //
-bool Level::LoadFromFile(std::string filename_p)
+bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
 {
 
+    // Clear the level class
     Clear();
 
-    // Load the tiles if they haven't been loaded already
 
+    // Open the level file
     std::ifstream level_file(filename_p);
     if(!level_file.is_open())
         return false;
+
 
     // Read tiles
     for(int y=0; y<MAP_HEIGHT; y++)
@@ -54,7 +56,14 @@ bool Level::LoadFromFile(std::string filename_p)
         std::cout << std::endl;
     }
 
+
+    // Close the level file
     level_file.close();
+
+
+    // Initialize the player
+    player_m.SetTextures(engine_p);
+    player_m.SetPosition(0.0f,0.0f);
 
     return true;
 }
@@ -83,6 +92,10 @@ void Level::Clear()
 //
 void Level::Events()
 {
+
+    // Handle player events
+    player_m.Events();
+
 }
 
 
@@ -91,6 +104,10 @@ void Level::Events()
 //
 void Level::Update()
 {
+
+    // Update the player
+    player_m.Update();
+
 }
 
 
@@ -117,6 +134,10 @@ void Level::Draw(Engine* engine_p)
             engine_p->sfml_window_m.draw(tile);
         }
     }
+
+
+    // Draw player
+    player_m.Draw(engine_p);
 
 }
 
