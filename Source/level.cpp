@@ -56,6 +56,7 @@ bool Level::LoadFromFile(std::string filename_p)
 
     level_file.close();
 
+    return true;
 }
 
 
