@@ -32,9 +32,11 @@ Level::Level(std::string filename_p, Engine* engine_p)
 
 // Level::LoadFromFile()
 //
+// *Doesn't check for invalid inputs*
+//
+//
 bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
 {
-
     // Clear the level class
     Clear();
 
@@ -42,7 +44,10 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
     // Open the level file
     std::ifstream level_file(filename_p);
     if(!level_file.is_open())
+    {
+        std::cout << "Map loading failed, couldn't open file " << filename_p << std::endl;
         return false;
+    }
 
 
     // Read tiles
@@ -55,6 +60,24 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
         }
         std::cout << std::endl;
     }
+
+
+    // Read boundry warp data (north, south, east, west)
+    level_file >> warp_north_m.filename; std::cout << warp_north_m.filename << std::endl;
+    level_file >> warp_north_m.x;
+    level_file >> warp_north_m.y;
+
+    level_file >> warp_south_m.filename; std::cout << warp_south_m.filename << std::endl;
+    level_file >> warp_south_m.x;
+    level_file >> warp_south_m.y;
+
+    level_file >> warp_east_m.filename; std::cout << warp_east_m.filename << std::endl;
+    level_file >> warp_east_m.x;
+    level_file >> warp_east_m.y;
+
+    level_file >> warp_west_m.filename; std::cout << warp_west_m.filename << std::endl;
+    level_file >> warp_west_m.x;
+    level_file >> warp_west_m.y;
 
 
     // Close the level file
@@ -84,6 +107,13 @@ void Level::Clear()
         }
     }
 
+
+    // Clear boundry warp data
+    warp_north_m.Clear();
+    warp_south_m.Clear();
+    warp_east_m.Clear();
+    warp_west_m.Clear();
+
 }
 
 
@@ -102,11 +132,45 @@ void Level::Events()
 
 // Level::Update()
 //
-void Level::Update()
+void Level::Update(Engine* engine_p)
 {
 
     // Update the player
     player_m.Update();
+
+    // React to map boundry warps
+    if(player_m.flag_outside_map_north)
+    {
+        int xtile, ytile;        // -
+        xtile = warp_north_m.x;  // - Save the previous map's warp location before loading the new one
+        ytile = warp_north_m.y;  // -
+        LoadFromFile(warp_north_m.filename, engine_p);
+        player_m.NewLevel(xtile, ytile);
+    }
+    if(player_m.flag_outside_map_south)
+    {
+        int xtile, ytile;
+        xtile = warp_south_m.x;
+        ytile = warp_south_m.y;
+        LoadFromFile(warp_south_m.filename, engine_p);
+        player_m.NewLevel(xtile, ytile);
+    }
+    if(player_m.flag_outside_map_east)
+    {
+        int xtile, ytile;
+        xtile = warp_east_m.x;
+        ytile = warp_east_m.y;
+        LoadFromFile(warp_east_m.filename, engine_p);
+        player_m.NewLevel(xtile, ytile);
+    }
+    if(player_m.flag_outside_map_west)
+    {
+        int xtile, ytile;
+        xtile = warp_west_m.x;
+        ytile = warp_west_m.y;
+        LoadFromFile(warp_west_m.filename, engine_p);
+        player_m.NewLevel(xtile, ytile);
+    }
 
 }
 

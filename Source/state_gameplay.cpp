@@ -72,7 +72,7 @@ void StateGameplay::Update()
 {
 
     // Update level, enemies and the player
-    level_m.Update();
+    level_m.Update(engine_m);
 
 }
 
