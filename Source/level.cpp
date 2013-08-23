@@ -67,54 +67,66 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
 
     // North
     level_file >> warp_north_m.filename; //std::cout << warp_north_m.filename << std::endl;
-    level_file >> use_pos;
-    if(use_pos == "p") // 'p' for position
+    if(warp_north_m.filename != "none")
     {
-        warp_north_m.use_position = true;
-        level_file >> warp_north_m.x;
-        level_file >> warp_north_m.y;
+        level_file >> use_pos;
+        if(use_pos == "p") // 'p' for position
+        {
+            warp_north_m.use_position = true;
+            level_file >> warp_north_m.x;
+            level_file >> warp_north_m.y;
+        }
+        else
+            warp_north_m.use_position = false;
     }
-    else
-        warp_north_m.use_position = false;
 
 
     // South
     level_file >> warp_south_m.filename; //std::cout << warp_south_m.filename << std::endl;
-    level_file >> use_pos;
-    if(use_pos == "p")
+    if(warp_south_m.filename != "none")
     {
-        warp_south_m.use_position = true;
-        level_file >> warp_south_m.x;
-        level_file >> warp_south_m.y;
+        level_file >> use_pos;
+        if(use_pos == "p")
+        {
+            warp_south_m.use_position = true;
+            level_file >> warp_south_m.x;
+            level_file >> warp_south_m.y;
+        }
+        else
+            warp_south_m.use_position = false;
     }
-    else
-        warp_south_m.use_position = false;
 
 
     // East
     level_file >> warp_east_m.filename; //std::cout << warp_east_m.filename << std::endl;
-    level_file >> use_pos;
-    if(use_pos == "p")
+    if(warp_east_m.filename != "none")
     {
-        warp_east_m.use_position = true;
-        level_file >> warp_east_m.x;
-        level_file >> warp_east_m.y;
+        level_file >> use_pos;
+        if(use_pos == "p")
+        {
+            warp_east_m.use_position = true;
+            level_file >> warp_east_m.x;
+            level_file >> warp_east_m.y;
+        }
+        else
+            warp_east_m.use_position = false;
     }
-    else
-        warp_east_m.use_position = false;
 
 
     // West
     level_file >> warp_west_m.filename; //std::cout << warp_west_m.filename << std::endl;
-    level_file >> use_pos;
-    if(use_pos == "p")
+    if(warp_west_m.filename != "none")
     {
-        warp_west_m.use_position = true;
-        level_file >> warp_west_m.x;
-        level_file >> warp_west_m.y;
+        level_file >> use_pos;
+        if(use_pos == "p")
+        {
+            warp_west_m.use_position = true;
+            level_file >> warp_west_m.x;
+            level_file >> warp_west_m.y;
+        }
+        else
+            warp_west_m.use_position = false;
     }
-    else
-        warp_west_m.use_position = false;
 
 
     // Close the level file
