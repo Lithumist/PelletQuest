@@ -78,10 +78,10 @@ protected:
     sf::IntRect tile_rects_[512];
 
     // The map boundry warp data
-    WarpData warp_north_m;
-    WarpData warp_south_m;
-    WarpData warp_east_m;
-    WarpData warp_west_m;
+    WarpData warp_north_m; bool warp_north_active_m;
+    WarpData warp_south_m; bool warp_south_active_m;
+    WarpData warp_east_m; bool warp_east_active_m;
+    WarpData warp_west_m; bool warp_west_active_m;
 
 private:
 

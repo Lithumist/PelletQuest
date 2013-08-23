@@ -69,6 +69,7 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
     level_file >> warp_north_m.filename; //std::cout << warp_north_m.filename << std::endl;
     if(warp_north_m.filename != "none")
     {
+        warp_north_active_m = true;
         level_file >> use_pos;
         if(use_pos == "p") // 'p' for position
         {
@@ -79,12 +80,15 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
         else
             warp_north_m.use_position = false;
     }
+    else
+        warp_north_active_m = false;
 
 
     // South
     level_file >> warp_south_m.filename; //std::cout << warp_south_m.filename << std::endl;
     if(warp_south_m.filename != "none")
     {
+        warp_south_active_m = true;
         level_file >> use_pos;
         if(use_pos == "p")
         {
@@ -95,12 +99,15 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
         else
             warp_south_m.use_position = false;
     }
+    else
+        warp_south_active_m = false;
 
 
     // East
     level_file >> warp_east_m.filename; //std::cout << warp_east_m.filename << std::endl;
     if(warp_east_m.filename != "none")
     {
+        warp_east_active_m = true;
         level_file >> use_pos;
         if(use_pos == "p")
         {
@@ -111,12 +118,15 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
         else
             warp_east_m.use_position = false;
     }
+    else
+        warp_east_active_m = false;
 
 
     // West
     level_file >> warp_west_m.filename; //std::cout << warp_west_m.filename << std::endl;
     if(warp_west_m.filename != "none")
     {
+        warp_west_active_m = true;
         level_file >> use_pos;
         if(use_pos == "p")
         {
@@ -127,6 +137,8 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
         else
             warp_west_m.use_position = false;
     }
+    else
+        warp_west_active_m = false;
 
 
     // Close the level file
@@ -158,10 +170,10 @@ void Level::Clear()
 
 
     // Clear boundry warp data
-    warp_north_m.Clear();
-    warp_south_m.Clear();
-    warp_east_m.Clear();
-    warp_west_m.Clear();
+    warp_north_m.Clear(); warp_north_active_m = false;
+    warp_south_m.Clear(); warp_south_active_m = false;
+    warp_east_m.Clear(); warp_east_active_m = false;
+    warp_west_m.Clear(); warp_west_active_m = false;
 
 }
 
@@ -193,7 +205,7 @@ void Level::Update(Engine* engine_p)
 
     // North
     //
-    if(player_m.flag_outside_map_north)
+    if(player_m.flag_outside_map_north && warp_north_active_m)
     {
         int xtile, ytile; // the position to warp the player to
         if(warp_north_m.use_position)
@@ -212,7 +224,7 @@ void Level::Update(Engine* engine_p)
 
     // South
     //
-    if(player_m.flag_outside_map_south)
+    if(player_m.flag_outside_map_south && warp_south_active_m)
     {
         int xtile, ytile;
         if(warp_south_m.use_position)
@@ -231,7 +243,7 @@ void Level::Update(Engine* engine_p)
 
     // East
     //
-    if(player_m.flag_outside_map_east)
+    if(player_m.flag_outside_map_east && warp_east_active_m)
     {
         int xtile, ytile;
         if(warp_east_m.use_position)
@@ -250,7 +262,7 @@ void Level::Update(Engine* engine_p)
 
     // West
     //
-    if(player_m.flag_outside_map_west)
+    if(player_m.flag_outside_map_west && warp_west_active_m)
     {
         int xtile, ytile;
         if(warp_west_m.use_position)
