@@ -41,6 +41,9 @@ public:
 
     void MoveToTile(int x_tile_p, int y_tile_p);
 
+    int TileX();
+    int TileY();
+
 
 
     float x_m, y_m;

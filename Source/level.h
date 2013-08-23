@@ -27,6 +27,7 @@ struct WarpData
 {
 
     std::string filename; // the filename of the map to warp to (relative to game executable)
+    bool use_position; // Weather to use the x and y values below (true), or start the player based on their position in the previous map
     int x; // the x position (in tiles) where the player will start
     int y; // ^
 
@@ -35,6 +36,7 @@ struct WarpData
     void Clear()
     {
         filename = "undefined";
+        use_position = false;
         x = -1;
         y = -1;
     }

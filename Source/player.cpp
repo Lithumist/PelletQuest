@@ -19,6 +19,19 @@ Player::Player()
 
 
 
+// Player::TileX()
+// Player::TileY()
+//
+int Player::TileX()
+{
+    return (int)(x_m/32);
+}
+int Player::TileY()
+{
+    return (int)(y_m/32);
+}
+
+
 // Player::NewLevel()
 //
 void Player::NewLevel(int x_p, int y_p)
