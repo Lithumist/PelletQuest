@@ -60,6 +60,9 @@
     <ClCompile Include="..\Source\player.cpp">
       <Filter>Source Files\States\Gameplay</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\entity.cpp">
+      <Filter>Source Files\Framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\engine.h">
@@ -79,6 +82,12 @@
     </ClInclude>
     <ClInclude Include="..\Source\player.h">
       <Filter>Header Files\States\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\entity.h">
+      <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\base.h">
+      <Filter>Header Files\Framework</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

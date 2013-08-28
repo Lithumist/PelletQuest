@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "base.h"
+
 #include <vector>
 #include <string>
 #include <map>

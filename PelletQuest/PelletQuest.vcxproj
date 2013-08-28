@@ -73,6 +73,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\engine.cpp" />
+    <ClCompile Include="..\Source\entity.cpp" />
     <ClCompile Include="..\Source\level.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\player.cpp" />
@@ -81,7 +82,9 @@
     <ClCompile Include="..\Source\state_main_menu.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\base.h" />
     <ClInclude Include="..\Source\engine.h" />
+    <ClInclude Include="..\Source\entity.h" />
     <ClInclude Include="..\Source\level.h" />
     <ClInclude Include="..\Source\player.h" />
     <ClInclude Include="..\Source\state.h" />
