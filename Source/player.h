@@ -7,6 +7,7 @@
 #pragma once
 
 #include "engine.h"
+#include "entity.h"
 
 
 
@@ -21,7 +22,7 @@ class Level;
 
 
 
-class Player
+class Player : public Entity
 {
 public:
 
@@ -29,25 +30,15 @@ public:
 
     void SetTextures(Engine* engine_p);
 
-    void SetPosition(float x_p, float y_p);
-
     // Resets the player for a new level.
     // x_p and y_p are it's new position (in tiles)
     void NewLevel(int x_p, int y_p);
 
-    void Events();
-    void Update();
-    void Draw(Engine* engine_p);
+    void Events() override;
+    void Update() override;
+    void Draw() override;
 
     void MoveToTile(int x_tile_p, int y_tile_p);
-
-    int TileX();
-    int TileY();
-
-
-
-    float x_m, y_m;
-    float x_speed_m, y_speed_m;
 
 
 

@@ -45,7 +45,10 @@ public:
 
 
     // Constructor
-    Entity(Engine* engine_p);
+    Entity();
+
+    // Set's the pointer to the engine instance
+    void SetEngine(Engine* engine_p);
 
 
 

@@ -19,17 +19,6 @@ Player::Player()
 
 
 
-// Player::TileX()
-// Player::TileY()
-//
-int Player::TileX()
-{
-    return (int)(x_m/32);
-}
-int Player::TileY()
-{
-    return (int)(y_m/32);
-}
 
 
 // Player::NewLevel()
@@ -67,15 +56,6 @@ void Player::SetTextures(Engine* engine_p)
 
 }
 
-
-
-// Player::SetPosition()
-//
-void Player::SetPosition(float x_p, float y_p)
-{
-    x_m = x_p;
-    y_m = y_p;
-}
 
 
 
@@ -142,12 +122,12 @@ void Player::Update()
 
 // Player::Draw()
 //
-void Player::Draw(Engine* engine_p)
+void Player::Draw()
 {
 
     spr_player_m.setPosition(x_m,y_m);
 
-    engine_p->sfml_window_m.draw(spr_player_m);
+    engine_m->sfml_window_m.draw(spr_player_m);
 
 }
 

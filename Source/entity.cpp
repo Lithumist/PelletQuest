@@ -12,7 +12,18 @@
 //
 // Entity::Entity()
 //
-Entity::Entity(Engine* engine_p)
+Entity::Entity()
+{
+}
+
+
+
+
+//####################################################################
+//
+// Entity::SetEngine()
+//
+void Entity::SetEngine(Engine* engine_p)
 {
     // Start engine_m to be null
     engine_m = NIL;

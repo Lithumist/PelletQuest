@@ -145,9 +145,11 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
     level_file.close();
 
 
-    // Initialize the player
+    // Initialize the player and add him to the map
     player_m.SetTextures(engine_p);
     player_m.SetPosition(0.0f,0.0f);
+    player_m.SetEngine(engine_p);
+    entities_m.push_back(&player_m);
 
     return true;
 }
@@ -175,6 +177,10 @@ void Level::Clear()
     warp_east_m.Clear(); warp_east_active_m = false;
     warp_west_m.Clear(); warp_west_active_m = false;
 
+
+    // Clear entities
+    entities_m.clear();
+
 }
 
 
@@ -184,8 +190,9 @@ void Level::Clear()
 void Level::Events()
 {
 
-    // Handle player events
-    player_m.Events();
+    // Handle all entity events
+    for(unsigned int e=0; e<entities_m.size(); e++)
+        entities_m[e]->Events();
 
 }
 
@@ -196,12 +203,27 @@ void Level::Events()
 void Level::Update(Engine* engine_p)
 {
 
-    // Update the player
-    player_m.Update();
+    // Update all entities
+    for(unsigned int e=0; e<entities_m.size(); e++)
+        entities_m[e]->Update();
     
-    /////////
-    // React to map boundry warps
-    //////
+
+
+
+
+
+    ////////////////////////////////////////
+    ////// React to map boundry warps //////
+    //                                    //
+    //                                    //
+    // This code doesn't belong here :/   //
+    //                                    //
+    // The player should have a pointer   //
+    // to thelevel instance and do this   //
+    // itself                             //
+    //                                    //
+    //                                    //
+    ////////////////////////////////////////
 
     // North
     //
@@ -215,7 +237,7 @@ void Level::Update(Engine* engine_p)
         }
         else
         {
-            xtile = player_m.TileX();
+            xtile = player_m.GetTileX();
             ytile = 14;
         }
         LoadFromFile(warp_north_m.filename, engine_p);
@@ -234,7 +256,7 @@ void Level::Update(Engine* engine_p)
         }
         else
         {
-            xtile = player_m.TileX();
+            xtile = player_m.GetTileX();
             ytile = 0;
         }
         LoadFromFile(warp_south_m.filename, engine_p);
@@ -254,7 +276,7 @@ void Level::Update(Engine* engine_p)
         else
         {
             xtile = 0;
-            ytile = player_m.TileY();
+            ytile = player_m.GetTileY();
         }
         LoadFromFile(warp_east_m.filename, engine_p);
         player_m.NewLevel(xtile, ytile);
@@ -273,7 +295,7 @@ void Level::Update(Engine* engine_p)
         else
         {
             xtile = 19;
-            ytile = player_m.TileY();
+            ytile = player_m.GetTileY();
         }
         LoadFromFile(warp_west_m.filename, engine_p);
         player_m.NewLevel(xtile, ytile);
@@ -288,7 +310,7 @@ void Level::Update(Engine* engine_p)
 void Level::Draw(Engine* engine_p)
 {
 
-    // Draw tiles
+    // Draw map tiles
     sf::Texture* tiles_texture = engine_p->GetTexture("resources/textures/tiles.png");
 
     for(int y=0; y<MAP_HEIGHT; y++)
@@ -307,8 +329,11 @@ void Level::Draw(Engine* engine_p)
     }
 
 
-    // Draw player
-    player_m.Draw(engine_p);
+    // Draw all entities
+    for(unsigned int e=0; e<entities_m.size(); e++)
+    {
+        entities_m[e]->Draw();
+    }
 
 }
 

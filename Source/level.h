@@ -11,7 +11,9 @@
 
 #include "engine.h"
 #include "player.h"
+#include "entity.h"
 
+#include <vector>
 #include <string>
 
 #define MAP_WIDTH 20
@@ -66,7 +68,8 @@ public:
 
 
 
-    Player player_m;
+    std::vector<Entity*> entities_m;
+    Player player_m; // player entity
 
 protected:
 
