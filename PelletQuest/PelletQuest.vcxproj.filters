@@ -37,6 +37,12 @@
     <Filter Include="Source Files\States\Gameplay">
       <UniqueIdentifier>{aee2984d-f033-4693-8d0c-84ab19fa1de9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\States\Gameplay\enemies">
+      <UniqueIdentifier>{35cc983f-4598-4c45-9a72-52d29bdae19a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\States\Gameplay\enemies">
+      <UniqueIdentifier>{38ad9fc1-f13c-409d-a390-c960836e7ef0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\main.cpp">
@@ -63,6 +69,12 @@
     <ClCompile Include="..\Source\entity.cpp">
       <Filter>Source Files\Framework</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\enemy.cpp">
+      <Filter>Source Files\States\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\path.cpp">
+      <Filter>Source Files\States\Gameplay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\engine.h">
@@ -88,6 +100,12 @@
     </ClInclude>
     <ClInclude Include="..\Source\base.h">
       <Filter>Header Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\enemy.h">
+      <Filter>Header Files\States\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\path.h">
+      <Filter>Header Files\States\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

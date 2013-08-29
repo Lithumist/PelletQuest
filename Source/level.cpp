@@ -61,6 +61,17 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
         //std::cout << std::endl;
     }
 
+    // Read collision
+    for(int y=0; y<MAP_HEIGHT; y++)
+    {
+        for(int x=0; x<MAP_WIDTH; x++)
+        {
+            level_file >> collision_m[x][y];
+            //std::cout << tiles_m[x][y] << " ";
+        }
+        //std::cout << std::endl;
+    }
+
 
     // Read boundry warp data (north, south, east, west)
     std::string use_pos;
@@ -167,6 +178,7 @@ void Level::Clear()
         for(int x=0; x<MAP_WIDTH; x++)
         {
             tiles_m[x][y] = 0;
+            collision_m[x][y] = 0;
         }
     }
 
@@ -180,6 +192,10 @@ void Level::Clear()
 
     // Clear entities
     entities_m.clear();
+
+
+    // Unvalidate the collision map
+    generated_collision_map_m = false;
 
 }
 
@@ -355,6 +371,40 @@ void Level::CalculateTileRects()
 
             // (Doesn't set the width or height because they are a constant 32 pixels)
 
+        }
+    }
+
+}
+
+
+
+// Level::GetCollisionMap()
+//
+CollisionMap Level::GetCollisionMap()
+{
+
+    if(!generated_collision_map_m)
+        GenerateCollisionMap();
+
+    return collision_map_m;
+
+}
+
+
+
+// Level::GenerateCollisionMap()
+//
+void Level::GenerateCollisionMap()
+{
+
+    for(int y=0; y<MAP_HEIGHT; y++)
+    {
+        for(int x=0; x<MAP_WIDTH; x++)
+        {
+            if(collision_m[x][y] == 1)
+                collision_map_m.position[x][y] = SOLID;
+            else
+                collision_map_m.position[x][y] = WALKABLE;
         }
     }
 
