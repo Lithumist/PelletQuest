@@ -23,8 +23,8 @@ public:
     virtual void OnSpawn() = 0;
     virtual void LoadAssets() = 0;
 
-    // Update() handles movement
-    virtual void Update();
+    // Handles movement
+    void UpdateMovement();
 
 
     // Movement

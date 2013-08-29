@@ -73,6 +73,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\enemy.cpp" />
+    <ClCompile Include="..\Source\enemy_test.cpp" />
     <ClCompile Include="..\Source\engine.cpp" />
     <ClCompile Include="..\Source\entity.cpp" />
     <ClCompile Include="..\Source\level.cpp" />
@@ -86,6 +87,7 @@
   <ItemGroup>
     <ClInclude Include="..\Source\base.h" />
     <ClInclude Include="..\Source\enemy.h" />
+    <ClInclude Include="..\Source\enemy_test.h" />
     <ClInclude Include="..\Source\engine.h" />
     <ClInclude Include="..\Source\entity.h" />
     <ClInclude Include="..\Source\level.h" />

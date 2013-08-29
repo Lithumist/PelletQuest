@@ -12,7 +12,7 @@
 void Enemy::Move(DIRECTION direction_p)
 {
 
-    // Dont initialize a new move if the player is moving already
+    // Dont initialize a new move if the enemy is moving already
     if(moving_m)
         return;
 
@@ -68,7 +68,7 @@ void Enemy::Move(DIRECTION direction_p)
     else
         y_speed_m = 0.0f;
 
-    // Make the update loop check to see if the player reached the target
+    // Make the update loop check to see if the enemy reached the target
     moving_m = true;
 
 }
@@ -77,7 +77,7 @@ void Enemy::Move(DIRECTION direction_p)
 
 // Enemy::Update()
 //
-void Enemy::Update()
+void Enemy::UpdateMovement()
 {
 
     if(moving_m)

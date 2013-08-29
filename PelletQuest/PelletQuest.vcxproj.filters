@@ -75,6 +75,9 @@
     <ClCompile Include="..\Source\path.cpp">
       <Filter>Source Files\States\Gameplay</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\enemy_test.cpp">
+      <Filter>Source Files\States\Gameplay\enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\engine.h">
@@ -106,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="..\Source\path.h">
       <Filter>Header Files\States\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\enemy_test.h">
+      <Filter>Header Files\States\Gameplay\enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

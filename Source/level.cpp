@@ -1,6 +1,7 @@
 // Implements level.h
 
 #include "level.h"
+#include "enemy_test.h"
 
 #include <fstream>
 #include <iostream> // debug only
@@ -161,6 +162,11 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
     player_m.SetPosition(0.0f,0.0f);
     player_m.SetEngine(engine_p);
     entities_m.push_back(&player_m);
+
+    // Add a test enemy
+    enemy_m.SetEngine(engine_p);
+    enemy_m.LoadAssets();
+    entities_m.push_back(&enemy_m);
 
     return true;
 }

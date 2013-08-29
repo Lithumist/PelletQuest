@@ -44,7 +44,7 @@ public:
     // Loads an SFML texture (Doesn't load same texture twice)
     bool LoadTexture(std::string filename_p);
 
-    // Returns a pointer to an SFML texture already loaded (Returns NULL on error)
+    // Returns a pointer to an SFML texture already loaded (Returns an error texture on failure to prevent crashing)
     sf::Texture* GetTexture(std::string filename_p);
 
 

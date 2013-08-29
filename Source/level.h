@@ -11,6 +11,7 @@
 
 #include "engine.h"
 #include "player.h"
+#include "enemy_test.h"
 #include "entity.h"
 #include "path.h"
 
@@ -75,6 +76,7 @@ public:
 
     std::vector<Entity*> entities_m;
     Player player_m; // player entity
+    EnemyTest enemy_m; // TEST ENEMY
 
 protected:
 
