@@ -48,11 +48,13 @@ void Player::NewLevel(int x_p, int y_p)
 
 // Player::SetTextures()
 //
-void Player::SetTextures(Engine* engine_p)
+void Player::SetTextures(Engine* engine_p, Level* level_p)
 {
 
     // Attempt to get player textures
     spr_player_m.setTexture(*engine_p->GetTexture("resources/textures/player.png"));
+
+    level_m = level_p;
 
 }
 
@@ -68,16 +70,16 @@ void Player::Events()
     tile_x = (int)(x_m/32);
     tile_y = (int)(y_m/32);
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && level_m->PlaceWalkable(tile_x+1,tile_y))
         MoveToTile(tile_x+1,tile_y);
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && level_m->PlaceWalkable(tile_x-1,tile_y))
         MoveToTile(tile_x-1,tile_y);
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && level_m->PlaceWalkable(tile_x,tile_y+1))
         MoveToTile(tile_x,tile_y+1);
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && level_m->PlaceWalkable(tile_x,tile_y-1))
         MoveToTile(tile_x,tile_y-1);
 
 }

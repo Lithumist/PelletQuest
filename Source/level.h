@@ -67,7 +67,9 @@ public:
     void Draw(Engine* engine_p);
 
     CollisionMap GetCollisionMap(); // return's the collision map and call's GenerateCollisionMap if one hasn't been generated yet
-    void GenerateCollisionMap(); // Generate's a new collision map overriting the previous one
+    void GenerateCollisionMap(); // Generate's a new collision map overriting the previous 
+
+    bool PlaceWalkable(int x_tile_p, int y_tile_p);
 
 
 

@@ -157,7 +157,7 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
 
 
     // Initialize the player and add him to the map
-    player_m.SetTextures(engine_p);
+    player_m.SetTextures(engine_p, this);
     player_m.SetPosition(0.0f,0.0f);
     player_m.SetEngine(engine_p);
     entities_m.push_back(&player_m);
@@ -407,5 +407,19 @@ void Level::GenerateCollisionMap()
                 collision_map_m.position[x][y] = WALKABLE;
         }
     }
+
+}
+
+
+
+// Level::PlaceWalkable()
+//
+bool Level::PlaceWalkable(int x_tile_p, int y_tile_p)
+{
+
+    if(collision_m[x_tile_p][y_tile_p] == 1)
+        return false;
+    else
+        return true;
 
 }

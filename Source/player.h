@@ -28,7 +28,7 @@ public:
 
     Player();
 
-    void SetTextures(Engine* engine_p);
+    void SetTextures(Engine* engine_p, Level* level_p);
 
     // Resets the player for a new level.
     // x_p and y_p are it's new position (in tiles)
@@ -62,5 +62,7 @@ private:
     bool moving_m;
 
     float target_x_m, target_y_m;
+
+    Level* level_m;
 
 };
