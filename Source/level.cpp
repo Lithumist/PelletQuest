@@ -22,6 +22,17 @@ Level::Level()
 
 
 
+// Level::~Level()
+//
+Level::~Level()
+{
+    // Free all memory
+    Clear();
+}
+
+
+
+
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Level::Level()
 //
@@ -163,15 +174,20 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
 
 
     // Initialize the player and add him to the map
-    player_m.SetTextures(engine_p, this);
-    player_m.SetPosition(0.0f,0.0f);
-    player_m.SetEngine(engine_p);
-    entities_m.push_back(&player_m);
+    player_m = new Player;
+    player_m->SetTextures(engine_p, this);
+    player_m->SetEngine(engine_p);
+    player_m->SetPosition(0.0f,0.0f);
+    AddEntity(player_m);
+    //player_m.SetTextures(engine_p, this);
+    //player_m.SetPosition(0.0f,0.0f);
+    //player_m.SetEngine(engine_p);
+    //entities_m.push_back(&player_m);
 
     // Add a test enemy
-    enemy_m.SetEngine(engine_p);
-    enemy_m.LoadAssets();
-    entities_m.push_back(&enemy_m);
+    //enemy_m.SetEngine(engine_p);
+    //enemy_m.LoadAssets();
+    //entities_m.push_back(&enemy_m);
 
     return true;
 }
@@ -204,8 +220,23 @@ void Level::Clear()
     warp_west_m.Clear(); warp_west_active_m = false;
 
 
-    // Clear entities
+    // Delete all used memory by entities
+    for(unsigned int e=0; e < entities_m.size(); e++)
+    {
+        if(entities_m[e] != NIL)
+        {
+            delete entities_m[e];
+            entities_m[e] = NIL;
+        }
+    }
+    // Clear the vector
     entities_m.clear();
+    // Reserve space for all entities
+    entities_m.reserve(MAX_ENTITIES);
+
+
+    // Clear the enemies vector
+    enemies_m.clear();
 
 
     // Unvalidate the collision map
@@ -360,11 +391,11 @@ void Level::PlayerOutsideLevel(DIRECTION direction_outside_p, Engine* engine_p)
         }
         else
         {
-            xtile = player_m.GetTileX();
+            xtile = player_m->GetTileX();
             ytile = 14;
         }
         LoadFromFile(warp_north_m.filename,engine_p);
-        player_m.NewLevel(xtile, ytile);
+        player_m->NewLevel(xtile, ytile);
     }
 
     // South
@@ -379,11 +410,11 @@ void Level::PlayerOutsideLevel(DIRECTION direction_outside_p, Engine* engine_p)
         }
         else
         {
-            xtile = player_m.GetTileX();
+            xtile = player_m->GetTileX();
             ytile = 0;
         }
         LoadFromFile(warp_south_m.filename, engine_p);
-        player_m.NewLevel(xtile, ytile);
+        player_m->NewLevel(xtile, ytile);
     }
 
     // East
@@ -399,10 +430,10 @@ void Level::PlayerOutsideLevel(DIRECTION direction_outside_p, Engine* engine_p)
         else
         {
             xtile = 0;
-            ytile = player_m.GetTileY();
+            ytile = player_m->GetTileY();
         }
         LoadFromFile(warp_east_m.filename, engine_p);
-        player_m.NewLevel(xtile, ytile);
+        player_m->NewLevel(xtile, ytile);
     }
 
     // West
@@ -418,10 +449,42 @@ void Level::PlayerOutsideLevel(DIRECTION direction_outside_p, Engine* engine_p)
         else
         {
             xtile = 19;
-            ytile = player_m.GetTileY();
+            ytile = player_m->GetTileY();
         }
         LoadFromFile(warp_west_m.filename, engine_p);
-        player_m.NewLevel(xtile, ytile);
+        player_m->NewLevel(xtile, ytile);
     }
+
+}
+
+
+
+
+
+
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Level::AddEntity()
+//
+bool Level::AddEntity(Entity* entity_p)
+{
+
+    if(entities_m.size() >= MAX_ENTITIES)
+    {
+        std::cout << "ERROR, MAX ENTITIES HIT, Level::AddEntity() failed, max entities reached.\n";
+        return false;
+    }
+
+
+    // There's space for another entity
+
+
+    entities_m.push_back(entity_p);
+
+    if(entity_p->type_m == 1)
+        enemies_m.push_back((Enemy*)entity_p);
+
+    return true;
 
 }

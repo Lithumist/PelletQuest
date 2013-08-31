@@ -15,6 +15,7 @@
 Entity::Entity()
 {
     engine_m = NIL;
+    type_m = 0;
 }
 
 

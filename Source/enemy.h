@@ -19,6 +19,9 @@ class Enemy : public Entity
 public:
 
 
+    Enemy();
+
+
     // Event methods
     virtual void OnSpawn() = 0;
     virtual void LoadAssets() = 0;

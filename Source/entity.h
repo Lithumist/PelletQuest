@@ -58,6 +58,16 @@ public:
     virtual void Draw() = 0;
 
 
+
+
+    // Type
+    /*
+        0 normal
+        1 enemy
+    */
+    int type_m;
+
+
 protected:
 
 

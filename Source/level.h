@@ -59,24 +59,25 @@ class Level
 public:
 
 
-    // Constructors
+    // Constructors and destructor
     Level(); // Creates a blank map
     Level(std::string filename_p, Engine* engine_p); // Load's a map from a file into the instance, Calls LoadFromFile()
-
+    ~Level();
 
     // Loading and clearing
     bool LoadFromFile(std::string filename_p, Engine* engine_p); // Load's a map from a file into the instance
-    void Clear(); // Clears the instance to a blank map
-
+    void Clear(); // Clears the instance to a blank map (deallocates all entities)
 
     // Loop
     void Events(); // Handles the events that apply to the level as a whole
     void Update(Engine* engine_p); // Update's the level and it's individual entities within
     void Draw(Engine* engine_p); // Draw's the level and it's individual entities within
 
-
     // Events
     void PlayerOutsideLevel(DIRECTION direction_outside_p, Engine* engine_p); // Called by the player when it goes outside the screen
+
+    // Adding entities
+    bool AddEntity(Entity* entity_p); // Add's an entity to the level. Level class handles memory management (must be created on the heap) (assumes entity has been initialized and set up already)
 
     
     /*
@@ -92,9 +93,9 @@ public:
 
 
 
-    std::vector<Entity*> entities_m;
-    Player player_m; // player entity
-    EnemyTest enemy_m; // TEST ENEMY
+    std::vector<Entity*> entities_m; // memory is managed here
+    std::vector<Enemy*> enemies_m; // these pointers point to the same places as entities_m do
+    Player* player_m; // player entity
 
 protected:
 

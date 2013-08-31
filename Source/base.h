@@ -21,3 +21,8 @@ enum DIRECTION {D_UP, D_DOWN, D_LEFT, D_RIGHT};
 // Map dimensions
 #define MAP_WIDTH 20
 #define MAP_HEIGHT 15
+
+
+
+// Max entities
+#define MAX_ENTITIES 1024

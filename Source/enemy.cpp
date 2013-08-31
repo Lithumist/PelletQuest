@@ -7,6 +7,18 @@
 
 
 
+// Enemy::Enemy()
+//
+Enemy::Enemy()
+{
+    engine_m = NIL;
+    type_m = 1;
+}
+
+
+
+
+
 // Enemy::Move()
 //
 void Enemy::Move(DIRECTION direction_p)
