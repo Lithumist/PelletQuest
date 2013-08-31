@@ -185,6 +185,10 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
     //entities_m.push_back(&player_m);
 
     // Add a test enemy
+    EnemyTest* enemy = new EnemyTest;
+    enemy->SetEngine(engine_p);
+    enemy->LoadAssets();
+    AddEntity(enemy);
     //enemy_m.SetEngine(engine_p);
     //enemy_m.LoadAssets();
     //entities_m.push_back(&enemy_m);
@@ -392,7 +396,7 @@ void Level::PlayerOutsideLevel(DIRECTION direction_outside_p, Engine* engine_p)
         else
         {
             xtile = player_m->GetTileX();
-            ytile = 14;
+            ytile = MAP_HEIGHT-1;
         }
         LoadFromFile(warp_north_m.filename,engine_p);
         player_m->NewLevel(xtile, ytile);
@@ -448,7 +452,7 @@ void Level::PlayerOutsideLevel(DIRECTION direction_outside_p, Engine* engine_p)
         }
         else
         {
-            xtile = 19;
+            xtile = MAP_WIDTH-1;
             ytile = player_m->GetTileY();
         }
         LoadFromFile(warp_west_m.filename, engine_p);
@@ -473,18 +477,21 @@ bool Level::AddEntity(Entity* entity_p)
     if(entities_m.size() >= MAX_ENTITIES)
     {
         std::cout << "ERROR, MAX ENTITIES HIT, Level::AddEntity() failed, max entities reached.\n";
-        return false;
+        return false; // Failure
     }
 
 
     // There's space for another entity
 
 
+    // Add the new entity
     entities_m.push_back(entity_p);
 
+    // Register it with the enemy vector if it's an enemy
     if(entity_p->type_m == 1)
         enemies_m.push_back((Enemy*)entity_p);
 
+    // Success
     return true;
 
 }
