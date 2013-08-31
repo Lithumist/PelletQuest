@@ -10,6 +10,8 @@
 
 
 
+
+
 // Level::Level()
 //
 Level::Level()
@@ -19,6 +21,8 @@ Level::Level()
 
 
 
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Level::Level()
 //
 Level::Level(std::string filename_p, Engine* engine_p)
@@ -29,6 +33,9 @@ Level::Level(std::string filename_p, Engine* engine_p)
 
 
 
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Level::LoadFromFile()
 //
 // *Doesn't check for invalid inputs*
@@ -171,6 +178,9 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
 
 
 
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Level::Clear()
 //
 void Level::Clear()
@@ -205,6 +215,9 @@ void Level::Clear()
 
 
 
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Level::Events()
 //
 void Level::Events()
@@ -218,6 +231,9 @@ void Level::Events()
 
 
 
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Level::Update()
 //
 void Level::Update(Engine* engine_p)
@@ -226,105 +242,14 @@ void Level::Update(Engine* engine_p)
     // Update all entities
     for(unsigned int e=0; e<entities_m.size(); e++)
         entities_m[e]->Update();
-    
-
-
-
-
-
-    ////////////////////////////////////////
-    ////// React to map boundry warps //////
-    //                                    //
-    //                                    //
-    // This code doesn't belong here :/   //
-    //                                    //
-    // The player should have a pointer   //
-    // to thelevel instance and do this   //
-    // itself                             //
-    //                                    //
-    //                                    //
-    ////////////////////////////////////////
-
-    // North
-    //
-    if(player_m.flag_outside_map_north && warp_north_active_m)
-    {
-        int xtile, ytile; // the position to warp the player to
-        if(warp_north_m.use_position)
-        {
-            xtile = warp_north_m.x;
-            ytile = warp_north_m.y;
-        }
-        else
-        {
-            xtile = player_m.GetTileX();
-            ytile = 14;
-        }
-        LoadFromFile(warp_north_m.filename, engine_p);
-        player_m.NewLevel(xtile, ytile);
-    }
-
-    // South
-    //
-    if(player_m.flag_outside_map_south && warp_south_active_m)
-    {
-        int xtile, ytile;
-        if(warp_south_m.use_position)
-        {
-            xtile = warp_south_m.x;
-            ytile = warp_south_m.y;
-        }
-        else
-        {
-            xtile = player_m.GetTileX();
-            ytile = 0;
-        }
-        LoadFromFile(warp_south_m.filename, engine_p);
-        player_m.NewLevel(xtile, ytile);
-    }
-
-    // East
-    //
-    if(player_m.flag_outside_map_east && warp_east_active_m)
-    {
-        int xtile, ytile;
-        if(warp_east_m.use_position)
-        {
-            xtile = warp_east_m.x;
-            ytile = warp_east_m.y;
-        }
-        else
-        {
-            xtile = 0;
-            ytile = player_m.GetTileY();
-        }
-        LoadFromFile(warp_east_m.filename, engine_p);
-        player_m.NewLevel(xtile, ytile);
-    }
-
-    // West
-    //
-    if(player_m.flag_outside_map_west && warp_west_active_m)
-    {
-        int xtile, ytile;
-        if(warp_west_m.use_position)
-        {
-            xtile = warp_west_m.x;
-            ytile = warp_west_m.y;
-        }
-        else
-        {
-            xtile = 19;
-            ytile = player_m.GetTileY();
-        }
-        LoadFromFile(warp_west_m.filename, engine_p);
-        player_m.NewLevel(xtile, ytile);
-    }
 
 }
 
 
 
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Level::Draw()
 //
 void Level::Draw(Engine* engine_p)
@@ -359,6 +284,9 @@ void Level::Draw(Engine* engine_p)
 
 
 
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Level::GetCollisionMap()
 //
 CollisionMap Level::GetCollisionMap()
@@ -371,8 +299,7 @@ CollisionMap Level::GetCollisionMap()
 
 }
 
-
-
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Level::GenerateCollisionMap()
 //
 void Level::GenerateCollisionMap()
@@ -393,6 +320,10 @@ void Level::GenerateCollisionMap()
 
 
 
+
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Level::PlaceWalkable()
 //
 bool Level::PlaceWalkable(int x_tile_p, int y_tile_p)
@@ -402,5 +333,95 @@ bool Level::PlaceWalkable(int x_tile_p, int y_tile_p)
         return false;
     else
         return true;
+
+}
+
+
+
+
+
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Level::PlayerOutsideLevel()
+//
+void Level::PlayerOutsideLevel(DIRECTION direction_outside_p, Engine* engine_p)
+{
+
+    // North
+    //
+    if(direction_outside_p == D_UP && warp_north_active_m)
+    {
+        int xtile, ytile; // the position to warp the player to
+        if(warp_north_m.use_position)
+        {
+            xtile = warp_north_m.x;
+            ytile = warp_north_m.y;
+        }
+        else
+        {
+            xtile = player_m.GetTileX();
+            ytile = 14;
+        }
+        LoadFromFile(warp_north_m.filename,engine_p);
+        player_m.NewLevel(xtile, ytile);
+    }
+
+    // South
+    //
+    if(direction_outside_p == D_DOWN && warp_south_active_m)
+    {
+        int xtile, ytile;
+        if(warp_south_m.use_position)
+        {
+            xtile = warp_south_m.x;
+            ytile = warp_south_m.y;
+        }
+        else
+        {
+            xtile = player_m.GetTileX();
+            ytile = 0;
+        }
+        LoadFromFile(warp_south_m.filename, engine_p);
+        player_m.NewLevel(xtile, ytile);
+    }
+
+    // East
+    //
+    if(direction_outside_p == D_RIGHT && warp_east_active_m)
+    {
+        int xtile, ytile;
+        if(warp_east_m.use_position)
+        {
+            xtile = warp_east_m.x;
+            ytile = warp_east_m.y;
+        }
+        else
+        {
+            xtile = 0;
+            ytile = player_m.GetTileY();
+        }
+        LoadFromFile(warp_east_m.filename, engine_p);
+        player_m.NewLevel(xtile, ytile);
+    }
+
+    // West
+    //
+    if(direction_outside_p == D_LEFT && warp_west_active_m)
+    {
+        int xtile, ytile;
+        if(warp_west_m.use_position)
+        {
+            xtile = warp_west_m.x;
+            ytile = warp_west_m.y;
+        }
+        else
+        {
+            xtile = 19;
+            ytile = player_m.GetTileY();
+        }
+        LoadFromFile(warp_west_m.filename, engine_p);
+        player_m.NewLevel(xtile, ytile);
+    }
 
 }

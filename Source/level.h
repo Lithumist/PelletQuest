@@ -14,6 +14,7 @@
 #include "enemy_test.h"
 #include "entity.h"
 #include "path.h"
+#include "base.h"
 
 #include <vector>
 #include <string>
@@ -72,6 +73,10 @@ public:
     void Events(); // Handles the events that apply to the level as a whole
     void Update(Engine* engine_p); // Update's the level and it's individual entities within
     void Draw(Engine* engine_p); // Draw's the level and it's individual entities within
+
+
+    // Events
+    void PlayerOutsideLevel(DIRECTION direction_outside_p, Engine* engine_p); // Called by the player when it goes outside the screen
 
     
     /*

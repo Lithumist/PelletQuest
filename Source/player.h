@@ -41,14 +41,6 @@ public:
     void MoveToTile(int x_tile_p, int y_tile_p);
 
 
-
-    // Event flags
-    bool flag_outside_map_north;
-    bool flag_outside_map_south;
-    bool flag_outside_map_east;
-    bool flag_outside_map_west;
-
-
 protected:
 private:
 

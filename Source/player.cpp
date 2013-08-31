@@ -37,11 +37,6 @@ void Player::NewLevel(int x_p, int y_p)
     target_x_m = 0.0f;
     target_y_m = 0.0f;
 
-    flag_outside_map_north = false;
-    flag_outside_map_south = false;
-    flag_outside_map_east = false;
-    flag_outside_map_west = false;
-
 }
 
 
@@ -104,13 +99,13 @@ void Player::Update()
 
         // Check for out of map events
         if(y_m < 0)
-            flag_outside_map_north = true;
+            level_m->PlayerOutsideLevel(D_UP, engine_m);
         if(y_m+32 > 480)
-            flag_outside_map_south = true;
+            level_m->PlayerOutsideLevel(D_DOWN, engine_m);
         if(x_m+32 > 640)
-            flag_outside_map_east = true;
+            level_m->PlayerOutsideLevel(D_RIGHT, engine_m);
         if(x_m < 0)
-            flag_outside_map_west = true;
+            level_m->PlayerOutsideLevel(D_LEFT, engine_m);
     }
 
 
