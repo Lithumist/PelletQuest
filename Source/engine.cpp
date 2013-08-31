@@ -13,6 +13,21 @@ Engine::Engine()
 {
     running_m = false;
     loaded_new_texture_m = true;
+
+
+    // Iterate through the 512 tile sheet tiles
+    for(int y=0; y<32; y++)
+    {
+        for(int x=0; x<16; x++)
+        {
+
+            tile_rects_m[y*16+x].left = 32*x;
+            tile_rects_m[y*16+x].top = 32*y;
+
+            // (Doesn't set the width or height because they are a constant 32 pixels)
+
+        }
+    }
 }
 
 

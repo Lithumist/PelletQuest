@@ -59,6 +59,9 @@ public:
     // ...
     sf::RenderWindow sfml_window_m;
 
+    // The rectangles that define the tile boundries on the tile sheet (calculated in the constructor)
+    sf::IntRect tile_rects_m[512];
+
 protected:
 
 	/////

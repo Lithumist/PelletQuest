@@ -15,7 +15,6 @@
 Level::Level()
 {
     Clear();
-    CalculateTileRects();
 }
 
 
@@ -25,7 +24,6 @@ Level::Level()
 Level::Level(std::string filename_p, Engine* engine_p)
 {
     Clear();
-    CalculateTileRects();
     LoadFromFile(filename_p, engine_p);
 }
 
@@ -343,7 +341,7 @@ void Level::Draw(Engine* engine_p)
 
             sf::Sprite tile;
             tile.setTexture(*tiles_texture);
-            tile.setTextureRect(sf::IntRect(tile_rects_[tile_number].left,tile_rects_[tile_number].top,32,32));
+            tile.setTextureRect(sf::IntRect(engine_p->tile_rects_m[tile_number].left,engine_p->tile_rects_m[tile_number].top,32,32));
             tile.setPosition((float)x*32,(float)y*32);
 
             engine_p->sfml_window_m.draw(tile);
@@ -355,29 +353,6 @@ void Level::Draw(Engine* engine_p)
     for(unsigned int e=0; e<entities_m.size(); e++)
     {
         entities_m[e]->Draw();
-    }
-
-}
-
-
-
-// Level::CalculateTileRects()
-//
-void Level::CalculateTileRects()
-{
-    
-    // Iterate through the 512 tile sheet tiles
-    for(int y=0; y<32; y++)
-    {
-        for(int x=0; x<16; x++)
-        {
-
-            tile_rects_[y*16+x].left = 32*x;
-            tile_rects_[y*16+x].top = 32*y;
-
-            // (Doesn't set the width or height because they are a constant 32 pixels)
-
-        }
     }
 
 }

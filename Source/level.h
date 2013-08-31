@@ -57,19 +57,32 @@ class Level
 {
 public:
 
-    Level();
-    Level(std::string filename_p, Engine* engine_p);
 
-    bool LoadFromFile(std::string filename_p, Engine* engine_p);
-    void Clear();
+    // Constructors
+    Level(); // Creates a blank map
+    Level(std::string filename_p, Engine* engine_p); // Load's a map from a file into the instance, Calls LoadFromFile()
 
-    void Events();
-    void Update(Engine* engine_p);
-    void Draw(Engine* engine_p);
 
+    // Loading and clearing
+    bool LoadFromFile(std::string filename_p, Engine* engine_p); // Load's a map from a file into the instance
+    void Clear(); // Clears the instance to a blank map
+
+
+    // Loop
+    void Events(); // Handles the events that apply to the level as a whole
+    void Update(Engine* engine_p); // Update's the level and it's individual entities within
+    void Draw(Engine* engine_p); // Draw's the level and it's individual entities within
+
+    
+    /*
+        Get
+    */
+
+    // Collision Map
     CollisionMap GetCollisionMap(); // return's the collision map and call's GenerateCollisionMap if one hasn't been generated yet
     void GenerateCollisionMap(); // Generate's a new collision map overriting the previous 
 
+    // Find out if a place is walkable
     bool PlaceWalkable(int x_tile_p, int y_tile_p);
 
 
@@ -80,15 +93,15 @@ public:
 
 protected:
 
-    // Tile array (fixed size)
+    // ###############
+    // Map Data
+    // ###############
+
+    // The graphical tile data
     int tiles_m[MAP_WIDTH][MAP_HEIGHT];
 
-    // Collision array
+    // Tile collision data
     int collision_m[MAP_WIDTH][MAP_HEIGHT];
-
-    // Tile rectangle coordinates table (initialized in constructor)
-    // (Should be part of the engine class)
-    sf::IntRect tile_rects_[512];
 
     // The map boundry warp data
     WarpData warp_north_m; bool warp_north_active_m;
@@ -96,14 +109,10 @@ protected:
     WarpData warp_east_m; bool warp_east_active_m;
     WarpData warp_west_m; bool warp_west_active_m;
 
-
     // The collision map
     CollisionMap collision_map_m;
     bool generated_collision_map_m; // if the collision map is valid
 
 private:
-
-    // Calculates tile_rects_
-    void CalculateTileRects();
 
 };
