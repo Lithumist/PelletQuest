@@ -35,6 +35,7 @@ public:
     void NewLevel(int x_p, int y_p);
 
     void Events(sf::Event e) override;
+    void EventsLoop(sf::Event e) override;
     void Update() override;
     void Draw() override;
 

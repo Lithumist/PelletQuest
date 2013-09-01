@@ -49,6 +49,15 @@ void EnemyTest::Events(sf::Event e)
 
 
 
+// EnemyTest::EventsLoop()
+//
+void EnemyTest::EventsLoop(sf::Event e)
+{
+}
+
+
+
+
 // EnemyTest::Update()
 //
 void EnemyTest::Update()

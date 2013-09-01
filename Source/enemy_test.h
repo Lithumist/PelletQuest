@@ -20,6 +20,7 @@ public:
     void LoadAssets();
 
     void Events(sf::Event e);
+    void EventsLoop(sf::Event e);
     void Update();
     void Draw();
 

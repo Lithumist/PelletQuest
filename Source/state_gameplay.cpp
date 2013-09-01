@@ -60,8 +60,11 @@ void StateGameplay::Events()
             engine_m->Exit(0);
 
         // Handle level events
-        level_m.Events(engine_m, e);
+        level_m.EventsLoop(engine_m, e);
     }
+
+
+    level_m.Events(engine_m, e);
 
 }
 

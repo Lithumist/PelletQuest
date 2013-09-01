@@ -58,6 +58,7 @@ public:
 
     // Game loop methods
     virtual void Events(sf::Event e) = 0;
+    virtual void EventsLoop(sf::Event e) = 0;
     virtual void Update() = 0;
     virtual void Draw() = 0;
 

@@ -270,9 +270,22 @@ void Level::Clear()
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Level::Events()
 // 
+void Level::Events(Engine* engine_p, sf::Event ee)
+{
+
+    // Handle all entity events
+    for(unsigned int e=0; e<entities_m.size(); e++)
+        entities_m[e]->Events(ee);
+
+}
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Level::EventsLoop()
+// 
 // Note this is called within a while loop polling for events
 //
-void Level::Events(Engine* engine_p, sf::Event ee)
+void Level::EventsLoop(Engine* engine_p, sf::Event ee)
 {
 
     if(ee.type == sf::Event::KeyPressed && ee.key.code == sf::Keyboard::D)
@@ -280,7 +293,7 @@ void Level::Events(Engine* engine_p, sf::Event ee)
 
     // Handle all entity events
     for(unsigned int e=0; e<entities_m.size(); e++)
-        entities_m[e]->Events(ee);
+        entities_m[e]->EventsLoop(ee);
 
 }
 

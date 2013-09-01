@@ -81,6 +81,14 @@ void Player::Events(sf::Event e)
 
 
 
+// Player::EventsLoop()
+//
+void Player::EventsLoop(sf::Event e)
+{
+}
+
+
+
 // Player::Update()
 //
 void Player::Update()

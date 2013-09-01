@@ -69,7 +69,8 @@ public:
     void Clear(); // Clears the instance to a blank map (deallocates all entities)
 
     // Loop
-    void Events(Engine* engine_p, sf::Event ee); // Handles the events that apply to the level as a whole
+    void Events(Engine* engine_p, sf::Event ee); // Handles the events that apply to the level as a whole. NOT called in the while loop
+    void EventsLoop(Engine* engine_p, sf::Event ee); // Handles the events that apply to the level as a whole. IS called in the while loop
     void Update(Engine* engine_p); // Update's the level and it's individual entities within
     void Draw(Engine* engine_p); // Draw's the level and it's individual entities within
 
