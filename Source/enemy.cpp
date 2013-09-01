@@ -13,6 +13,7 @@ Enemy::Enemy()
 {
     engine_m = NIL;
     type_m = 1;
+    moving_m = false;
 }
 
 

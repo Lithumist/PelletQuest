@@ -13,6 +13,8 @@
 //
 void EnemyTest::OnSpawn()
 {
+    x_m = 0;
+    y_m = 0;
 }
 
 

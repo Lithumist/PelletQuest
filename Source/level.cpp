@@ -193,6 +193,19 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
     //enemy_m.LoadAssets();
     //entities_m.push_back(&enemy_m);
 
+
+
+
+
+
+
+
+    // Do the OnSpawn events of all the enemies
+    for(Enemy* e : enemies_m)
+    {
+        e->OnSpawn();
+    }
+
     return true;
 }
 
