@@ -409,6 +409,18 @@ void Level::GenerateCollisionMap()
 bool Level::PlaceWalkable(int x_tile_p, int y_tile_p)
 {
 
+    // If tile is outside of map boundries, say that it's walkable
+    if(x_tile_p < 0)
+        return true;
+    if(x_tile_p > MAP_WIDTH-1)
+        return true;
+    if(y_tile_p < 0)
+        return true;
+    if(y_tile_p > MAP_HEIGHT-1)
+        return true;
+
+
+    // Check the collision map for tiles within the map's boundries
     if(collision_m[x_tile_p][y_tile_p] == 1)
         return false;
     else
