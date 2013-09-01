@@ -58,7 +58,7 @@ void Player::SetTextures(Engine* engine_p, Level* level_p)
 
 // Player::Events()
 //
-void Player::Events()
+void Player::Events(sf::Event e)
 {
 
     int tile_x, tile_y;

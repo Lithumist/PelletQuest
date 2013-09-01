@@ -169,3 +169,12 @@ sf::Texture* Engine::GetTexture(std::string filename_p)
         return &textures_m[filename_p]; // return texture
 
 }
+
+
+
+// Engine::GetErrorTexture()
+//
+sf::Texture* Engine::GetErrorTexture()
+{
+    return &textures_m["resources/textures/error.png"];
+}

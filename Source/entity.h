@@ -10,6 +10,10 @@
 
 
 
+#include <SFML/Graphics.hpp>
+
+
+
 class Engine;
 
 
@@ -53,7 +57,7 @@ public:
 
 
     // Game loop methods
-    virtual void Events() = 0;
+    virtual void Events(sf::Event e) = 0;
     virtual void Update() = 0;
     virtual void Draw() = 0;
 

@@ -69,7 +69,7 @@ public:
     void Clear(); // Clears the instance to a blank map (deallocates all entities)
 
     // Loop
-    void Events(); // Handles the events that apply to the level as a whole
+    void Events(Engine* engine_p, sf::Event ee); // Handles the events that apply to the level as a whole
     void Update(Engine* engine_p); // Update's the level and it's individual entities within
     void Draw(Engine* engine_p); // Draw's the level and it's individual entities within
 
@@ -78,6 +78,8 @@ public:
 
     // Adding entities
     bool AddEntity(Entity* entity_p); // Add's an entity to the level. Level class handles memory management (must be created on the heap) (assumes entity has been initialized and set up already)
+
+    void ToggleDebugView(){ debug_view_m = !debug_view_m; } // Toggles debug view on and off
 
     
     /*
@@ -118,6 +120,15 @@ protected:
     // The collision map
     CollisionMap collision_map_m;
     bool generated_collision_map_m; // if the collision map is valid
+
+
+
+    // ###############
+    // Debug Data
+    // ###############
+
+    // Debug view
+    bool debug_view_m;
 
 private:
 

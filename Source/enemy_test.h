@@ -19,7 +19,7 @@ public:
     void OnSpawn();
     void LoadAssets();
 
-    void Events();
+    void Events(sf::Event e);
     void Update();
     void Draw();
 

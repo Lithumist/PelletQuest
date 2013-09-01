@@ -43,7 +43,7 @@ void EnemyTest::LoadAssets()
 
 // EnemyTest::Events()
 //
-void EnemyTest::Events()
+void EnemyTest::Events(sf::Event e)
 {
 }
 

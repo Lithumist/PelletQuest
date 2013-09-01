@@ -34,7 +34,7 @@ public:
     // x_p and y_p are it's new position (in tiles)
     void NewLevel(int x_p, int y_p);
 
-    void Events() override;
+    void Events(sf::Event e) override;
     void Update() override;
     void Draw() override;
 

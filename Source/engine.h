@@ -47,6 +47,9 @@ public:
     // Returns a pointer to an SFML texture already loaded (Returns an error texture on failure to prevent crashing)
     sf::Texture* GetTexture(std::string filename_p);
 
+    // Returns the error texture
+    sf::Texture* GetErrorTexture();
+
 
 
 	/////

@@ -16,6 +16,7 @@
 //
 Level::Level()
 {
+    debug_view_m = false;
     Clear();
 }
 
@@ -38,6 +39,7 @@ Level::~Level()
 //
 Level::Level(std::string filename_p, Engine* engine_p)
 {
+    debug_view_m = false;
     Clear();
     LoadFromFile(filename_p, engine_p);
 }
@@ -267,13 +269,18 @@ void Level::Clear()
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Level::Events()
+// 
+// Note this is called within a while loop polling for events
 //
-void Level::Events()
+void Level::Events(Engine* engine_p, sf::Event ee)
 {
+
+    if(ee.type == sf::Event::KeyPressed && ee.key.code == sf::Keyboard::D)
+        ToggleDebugView();
 
     // Handle all entity events
     for(unsigned int e=0; e<entities_m.size(); e++)
-        entities_m[e]->Events();
+        entities_m[e]->Events(ee);
 
 }
 
@@ -326,6 +333,31 @@ void Level::Draw(Engine* engine_p)
     for(unsigned int e=0; e<entities_m.size(); e++)
     {
         entities_m[e]->Draw();
+    }
+
+
+    // Draw debug view collision tiles
+    if(debug_view_m)
+    {
+        for(int y=0; y<MAP_HEIGHT; y++)
+        {
+            for(int x=0; x<MAP_WIDTH; x++)
+            {
+                int tile_number = collision_m[x][y];
+
+                if(tile_number == 1)
+                {
+                    sf::Sprite tile;
+                    tile.setTexture(*engine_p->GetErrorTexture());
+                    tile.setScale(0.5,0.5); // Make it 32*32 (error texture is 64*64)
+                    tile.setPosition((float)x*32,(float)y*32);
+                    tile.setColor( sf::Color(255,255,255,128) );
+
+                    engine_p->sfml_window_m.draw(tile);
+                }
+
+            }
+        }
     }
 
 }

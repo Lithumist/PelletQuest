@@ -58,9 +58,10 @@ void StateGameplay::Events()
     {
         if(e.type == sf::Event::Closed)
             engine_m->Exit(0);
-    }
 
-    level_m.Events();
+        // Handle level events
+        level_m.Events(engine_m, e);
+    }
 
 }
 
