@@ -27,8 +27,10 @@ class Player : public Entity
 public:
 
     Player();
+    void SetLevel(Level* level_p);
 
-    void SetTextures(Engine* engine_p, Level* level_p);
+
+    void SetTextures();
 
     // Resets the player for a new level.
     // x_p and y_p are it's new position (in tiles)

@@ -177,8 +177,9 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
 
     // Initialize the player and add him to the map
     player_m = new Player;
-    player_m->SetTextures(engine_p, this);
     player_m->SetEngine(engine_p);
+    player_m->SetLevel(this);
+    player_m->SetTextures();
     player_m->SetPosition(0.0f,0.0f);
     AddEntity(player_m);
     //player_m.SetTextures(engine_p, this);

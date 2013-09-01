@@ -3,6 +3,8 @@
 #include "player.h"
 #include "level.h"
 
+#include <iostream>
+
 
 
 
@@ -15,6 +17,16 @@ Player::Player()
     NewLevel(0,0);
 
     direction_m = 90; // up
+}
+
+
+
+
+// Player::SetLevel()
+//
+void Player::SetLevel(Level* level_p)
+{
+    level_m = level_p;
 }
 
 
@@ -43,13 +55,17 @@ void Player::NewLevel(int x_p, int y_p)
 
 // Player::SetTextures()
 //
-void Player::SetTextures(Engine* engine_p, Level* level_p)
+void Player::SetTextures()
 {
+    if(engine_m == NIL)
+    {
+        std::cout << "ERROR. NULL POINTER. Player::SetTextures() engine_m is NULL.\n";
+        return;
+    }
 
     // Attempt to get player textures
-    spr_player_m.setTexture(*engine_p->GetTexture("resources/textures/player.png"));
+    spr_player_m.setTexture(*engine_m->GetTexture("resources/textures/player.png"));
 
-    level_m = level_p;
 
 }
 
