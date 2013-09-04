@@ -60,11 +60,11 @@ void StateGameplay::Events()
             engine_m->Exit(0);
 
         // Handle level events
-        level_m.EventsLoop(engine_m, e);
+        level_m.EventsLoop(e);
     }
 
 
-    level_m.Events(engine_m, e);
+    level_m.Events(e);
 
 }
 
@@ -76,7 +76,7 @@ void StateGameplay::Update()
 {
 
     // Update level, enemies and the player
-    level_m.Update(engine_m);
+    level_m.Update();
 
 }
 
@@ -88,6 +88,6 @@ void StateGameplay::Draw()
 {
 
     // Draw level, enemies and the player
-    level_m.Draw(engine_m);
+    level_m.Draw();
 
 }

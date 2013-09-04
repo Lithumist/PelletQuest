@@ -16,8 +16,8 @@
 //
 Level::Level()
 {
+    engine_m = NIL;
     debug_view_m = false;
-    Clear();
 }
 
 
@@ -39,8 +39,13 @@ Level::~Level()
 //
 Level::Level(std::string filename_p, Engine* engine_p)
 {
+    engine_m = NIL;
     debug_view_m = false;
-    Clear();
+
+    // Save engine pointer and spit out errors
+    IsPointerNull((void*)engine_p,"Level::Level()");
+    engine_m = engine_p;
+
     LoadFromFile(filename_p, engine_p);
 }
 
@@ -58,6 +63,11 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
 {
     // Clear the level class
     Clear();
+
+
+    // Save engine pointer and spit out errors
+    IsPointerNull((void*)engine_p,"Level::Level()");
+    engine_m = engine_p;
 
 
     // Open the level file
@@ -272,8 +282,12 @@ void Level::Clear()
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Level::Events()
 // 
-void Level::Events(Engine* engine_p, sf::Event ee)
+void Level::Events(sf::Event ee)
 {
+
+    if(IsPointerNull((void*)engine_m,"LevelTest::Events()"))
+        return;
+
 
     // Handle all entity events
     for(unsigned int e=0; e<entities_m.size(); e++)
@@ -287,8 +301,13 @@ void Level::Events(Engine* engine_p, sf::Event ee)
 // 
 // Note this is called within a while loop polling for events
 //
-void Level::EventsLoop(Engine* engine_p, sf::Event ee)
+void Level::EventsLoop(sf::Event ee)
 {
+
+    if(IsPointerNull((void*)engine_m,"LevelTest::EventsLoop()"))
+        return;
+
+
 
     if(ee.type == sf::Event::KeyPressed && ee.key.code == sf::Keyboard::D)
         ToggleDebugView();
@@ -306,8 +325,10 @@ void Level::EventsLoop(Engine* engine_p, sf::Event ee)
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Level::Update()
 //
-void Level::Update(Engine* engine_p)
+void Level::Update()
 {
+     if(IsPointerNull((void*)engine_m,"LevelTest::Update()"))
+        return;
 
     // Update all entities
     for(unsigned int e=0; e<entities_m.size(); e++)
@@ -322,11 +343,16 @@ void Level::Update(Engine* engine_p)
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Level::Draw()
 //
-void Level::Draw(Engine* engine_p)
+void Level::Draw()
 {
 
+    if(IsPointerNull((void*)engine_m,"LevelTest::Draw()"))
+        return;
+
+
+
     // Draw map tiles
-    sf::Texture* tiles_texture = engine_p->GetTexture("resources/textures/tiles.png");
+    sf::Texture* tiles_texture = engine_m->GetTexture("resources/textures/tiles.png");
 
     for(int y=0; y<MAP_HEIGHT; y++)
     {
@@ -336,10 +362,10 @@ void Level::Draw(Engine* engine_p)
 
             sf::Sprite tile;
             tile.setTexture(*tiles_texture);
-            tile.setTextureRect(sf::IntRect(engine_p->tile_rects_m[tile_number].left,engine_p->tile_rects_m[tile_number].top,32,32));
+            tile.setTextureRect(sf::IntRect(engine_m->tile_rects_m[tile_number].left,engine_m->tile_rects_m[tile_number].top,32,32));
             tile.setPosition((float)x*32,(float)y*32);
 
-            engine_p->sfml_window_m.draw(tile);
+            engine_m->sfml_window_m.draw(tile);
         }
     }
 
@@ -363,12 +389,12 @@ void Level::Draw(Engine* engine_p)
                 if(tile_number == 1)
                 {
                     sf::Sprite tile;
-                    tile.setTexture(*engine_p->GetErrorTexture());
+                    tile.setTexture(*engine_m->GetErrorTexture());
                     tile.setScale(0.5,0.5); // Make it 32*32 (error texture is 64*64)
                     tile.setPosition((float)x*32,(float)y*32);
                     tile.setColor( sf::Color(255,255,255,128) );
 
-                    engine_p->sfml_window_m.draw(tile);
+                    engine_m->sfml_window_m.draw(tile);
                 }
 
             }
@@ -452,8 +478,14 @@ bool Level::PlaceWalkable(int x_tile_p, int y_tile_p)
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Level::PlayerOutsideLevel()
 //
-void Level::PlayerOutsideLevel(DIRECTION direction_outside_p, Engine* engine_p)
+void Level::PlayerOutsideLevel(DIRECTION direction_outside_p)
 {
+
+    if(IsPointerNull((void*)engine_m,"LevelTest::PlayerOutsideLevel()"))
+        return;
+
+
+
 
     // North
     //
@@ -470,7 +502,7 @@ void Level::PlayerOutsideLevel(DIRECTION direction_outside_p, Engine* engine_p)
             xtile = player_m->GetTileX();
             ytile = MAP_HEIGHT-1;
         }
-        LoadFromFile(warp_north_m.filename,engine_p);
+        LoadFromFile(warp_north_m.filename,engine_m);
         player_m->NewLevel(xtile, ytile);
     }
 
@@ -489,7 +521,7 @@ void Level::PlayerOutsideLevel(DIRECTION direction_outside_p, Engine* engine_p)
             xtile = player_m->GetTileX();
             ytile = 0;
         }
-        LoadFromFile(warp_south_m.filename, engine_p);
+        LoadFromFile(warp_south_m.filename, engine_m);
         player_m->NewLevel(xtile, ytile);
     }
 
@@ -508,7 +540,7 @@ void Level::PlayerOutsideLevel(DIRECTION direction_outside_p, Engine* engine_p)
             xtile = 0;
             ytile = player_m->GetTileY();
         }
-        LoadFromFile(warp_east_m.filename, engine_p);
+        LoadFromFile(warp_east_m.filename, engine_m);
         player_m->NewLevel(xtile, ytile);
     }
 
@@ -527,7 +559,7 @@ void Level::PlayerOutsideLevel(DIRECTION direction_outside_p, Engine* engine_p)
             xtile = MAP_WIDTH-1;
             ytile = player_m->GetTileY();
         }
-        LoadFromFile(warp_west_m.filename, engine_p);
+        LoadFromFile(warp_west_m.filename, engine_m);
         player_m->NewLevel(xtile, ytile);
     }
 

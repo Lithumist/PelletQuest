@@ -69,13 +69,13 @@ public:
     void Clear(); // Clears the instance to a blank map (deallocates all entities)
 
     // Loop
-    void Events(Engine* engine_p, sf::Event ee); // Handles the events that apply to the level as a whole. NOT called in the while loop
-    void EventsLoop(Engine* engine_p, sf::Event ee); // Handles the events that apply to the level as a whole. IS called in the while loop
-    void Update(Engine* engine_p); // Update's the level and it's individual entities within
-    void Draw(Engine* engine_p); // Draw's the level and it's individual entities within
+    void Events(sf::Event ee); // Handles the events that apply to the level as a whole. NOT called in the while loop
+    void EventsLoop(sf::Event ee); // Handles the events that apply to the level as a whole. IS called in the while loop
+    void Update(); // Update's the level and it's individual entities within
+    void Draw(); // Draw's the level and it's individual entities within
 
     // Events
-    void PlayerOutsideLevel(DIRECTION direction_outside_p, Engine* engine_p); // Called by the player when it goes outside the screen
+    void PlayerOutsideLevel(DIRECTION direction_outside_p); // Called by the player when it goes outside the screen
 
     // Adding entities
     bool AddEntity(Entity* entity_p); // Add's an entity to the level. Level class handles memory management (must be created on the heap) (assumes entity has been initialized and set up already)

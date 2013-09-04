@@ -125,13 +125,13 @@ void Player::Update()
 
         // Check for out of map events
         if(y_m < 0)
-            level_m->PlayerOutsideLevel(D_UP, engine_m);
+            level_m->PlayerOutsideLevel(D_UP);
         if(y_m+32 > 480)
-            level_m->PlayerOutsideLevel(D_DOWN, engine_m);
+            level_m->PlayerOutsideLevel(D_DOWN);
         if(x_m+32 > 640)
-            level_m->PlayerOutsideLevel(D_RIGHT, engine_m);
+            level_m->PlayerOutsideLevel(D_RIGHT);
         if(x_m < 0)
-            level_m->PlayerOutsideLevel(D_LEFT, engine_m);
+            level_m->PlayerOutsideLevel(D_LEFT);
     }
 
 
