@@ -32,3 +32,4 @@ resources/maps/north.txt n
 resources/maps/south.txt n
 resources/maps/east.txt n
 resources/maps/west.txt n
+ENEMY_TEST 0 7

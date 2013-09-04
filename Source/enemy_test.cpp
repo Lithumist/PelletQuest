@@ -13,8 +13,7 @@
 //
 void EnemyTest::OnSpawn()
 {
-    x_m = 0;
-    y_m = 0;
+    // Do NOT set position to 0,0 as this will overrite the position set in the level file
 }
 
 

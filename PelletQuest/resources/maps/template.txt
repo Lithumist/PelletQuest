@@ -32,3 +32,4 @@ none
 none
 none
 none
+ENEMY_TEST 0 0

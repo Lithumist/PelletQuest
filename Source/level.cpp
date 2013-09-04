@@ -181,6 +181,57 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
         warp_west_active_m = false;
 
 
+
+
+
+
+
+    // Loads enemies from file and adds to level
+    //
+    // Note this needs to be at the end of the level loading code to work!
+    //
+    while(!level_file.eof())
+    {
+
+        std::string enemy_type;
+        int enemy_position_x, enemy_position_y;
+
+        level_file >> enemy_type;
+        level_file >> enemy_position_x;
+        level_file >> enemy_position_y;
+
+
+        if(enemy_type == "ENEMY_TEST")
+        {
+
+            EnemyTest* enemy = new EnemyTest;
+            enemy->SetEngine(engine_p);
+            enemy->SetLevel(this);
+            enemy->LoadAssets();
+            enemy->SetPosition(float(enemy_position_x*32), float(enemy_position_y*32));
+
+            AddEntity(enemy);
+
+        }
+
+
+        else if(enemy_type == "ENEMY_TEST2")
+        {
+
+            std::cout << "ENEMY_TEST2 NOT IMPLEMENTED YET!\n";
+
+        }
+
+
+
+        else // Error, undefined enemy type
+            std::cout << "ERROR: BAD MAP FILE. " << filename_p << " undefined enemy type " << enemy_type << "." << std::endl;
+
+
+
+    }
+
+
     // Close the level file
     level_file.close();
 
@@ -198,6 +249,7 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
     //entities_m.push_back(&player_m);
 
     // Add a test enemy
+    /*
     EnemyTest* enemy = new EnemyTest;
     enemy->SetEngine(engine_p);
     enemy->SetLevel(this);
@@ -206,6 +258,7 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
     //enemy_m.SetEngine(engine_p);
     //enemy_m.LoadAssets();
     //entities_m.push_back(&enemy_m);
+    */
 
 
 
