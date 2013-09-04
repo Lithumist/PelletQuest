@@ -15,6 +15,7 @@
 
 
 class Engine;
+class Level;
 
 
 class Entity
@@ -54,6 +55,9 @@ public:
     // Set's the pointer to the engine instance
     void SetEngine(Engine* engine_p);
 
+    // Set's the pointer to the level instance
+    void SetLevel(Level* level_p);
+
 
 
     // Game loop methods
@@ -78,6 +82,9 @@ protected:
 
     // Pointer to the engine instance
     Engine* engine_m;
+
+    // Pointer to the level instance
+    Level* level_m;
 
     // Positions
     float x_m, y_m;

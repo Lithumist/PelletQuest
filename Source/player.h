@@ -27,7 +27,6 @@ class Player : public Entity
 public:
 
     Player();
-    void SetLevel(Level* level_p);
 
 
     void SetTextures();
@@ -57,7 +56,5 @@ private:
     bool moving_m;
 
     float target_x_m, target_y_m;
-
-    Level* level_m;
 
 };

@@ -22,16 +22,6 @@ Player::Player()
 
 
 
-// Player::SetLevel()
-//
-void Player::SetLevel(Level* level_p)
-{
-    level_m = level_p;
-}
-
-
-
-
 
 // Player::NewLevel()
 //
@@ -57,11 +47,8 @@ void Player::NewLevel(int x_p, int y_p)
 //
 void Player::SetTextures()
 {
-    if(engine_m == NIL)
-    {
-        std::cout << "ERROR. NULL POINTER. Player::SetTextures() engine_m is NULL.\n";
+    if(IsPointerNull((void*)engine_m,"Player::SetTextures()"))
         return;
-    }
 
     // Attempt to get player textures
     spr_player_m.setTexture(*engine_m->GetTexture("resources/textures/player.png"));
@@ -76,6 +63,11 @@ void Player::SetTextures()
 //
 void Player::Events(sf::Event e)
 {
+
+    if(IsPointerNull((void*)engine_m,"Player::Events()"))
+        return;
+    if(IsPointerNull((void*)level_m,"Player::Events()"))
+        return;
 
     int tile_x, tile_y;
     tile_x = (int)(x_m/32);
@@ -101,6 +93,10 @@ void Player::Events(sf::Event e)
 //
 void Player::EventsLoop(sf::Event e)
 {
+    if(IsPointerNull((void*)engine_m,"Player::EventsLoop()"))
+        return;
+    if(IsPointerNull((void*)level_m,"Player::EventsLoop()"))
+        return;
 }
 
 
@@ -109,7 +105,13 @@ void Player::EventsLoop(sf::Event e)
 //
 void Player::Update()
 {
+
+    if(IsPointerNull((void*)engine_m,"Player::Update()"))
+        return;
+    if(IsPointerNull((void*)level_m,"Player::Update()"))
+        return;
     
+
     // This code is only executed whilst the player is in motion
     if(moving_m)
     {
@@ -145,6 +147,12 @@ void Player::Update()
 //
 void Player::Draw()
 {
+
+    if(IsPointerNull((void*)engine_m,"Player::Draw()"))
+        return;
+    if(IsPointerNull((void*)level_m,"Player::Draw()"))
+        return;
+
 
     spr_player_m.setPosition(x_m,y_m);
 

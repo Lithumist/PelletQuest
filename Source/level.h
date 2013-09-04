@@ -61,7 +61,7 @@ public:
 
     // Constructors and destructor
     Level(); // Creates a blank map
-    Level(std::string filename_p, Engine* engine_p); // Load's a map from a file into the instance, Calls LoadFromFile()
+    Level(std::string filename_p, Engine* engine_p); // Load's a map from a file into the instance, Calls LoadFromFile() Also saves the engine pointer
     ~Level();
 
     // Loading and clearing
@@ -131,6 +131,16 @@ protected:
     // Debug view
     bool debug_view_m;
 
+
+
+    // ###############
+    // Engine Pointer
+    // ###############
+    Engine* engine_m;
+
 private:
+
+
+
 
 };

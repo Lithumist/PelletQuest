@@ -174,7 +174,7 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
     // Close the level file
     level_file.close();
 
-
+    
     // Initialize the player and add him to the map
     player_m = new Player;
     player_m->SetEngine(engine_p);
@@ -190,6 +190,7 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
     // Add a test enemy
     EnemyTest* enemy = new EnemyTest;
     enemy->SetEngine(engine_p);
+    enemy->SetLevel(this);
     enemy->LoadAssets();
     AddEntity(enemy);
     //enemy_m.SetEngine(engine_p);
