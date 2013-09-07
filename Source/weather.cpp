@@ -59,10 +59,27 @@ void Weather::StartWeather(WEATHER_TYPE type_p)
     col = sf::Color::Blue;
 
 
+    int counter = 0;
     for(unsigned int c=0; c<PARTICLE_COUNT; c++)
     {
-        Particle np(col,0,0,4,4);
+        float x_spawn, y_spawn;
+        if(counter == 0)
+        {
+            x_spawn = (rand() % 768) - 64;
+            y_spawn = -64;
+        }
+        else
+        {
+            x_spawn = -64;
+            y_spawn = (rand() % 608) - 64;
+        }
+
+        Particle np(col,x_spawn,y_spawn,4,4);
         particles_m.push_back(np);
+
+        ++ counter;
+        if(counter >= 2)
+            counter = 0;
     }
 
     

@@ -17,7 +17,7 @@
 
 
 
-#define PARTICLE_COUNT 1000
+#define PARTICLE_COUNT 100
 
 #define SPAWN_TIMER_LIMIT 50
 
@@ -61,6 +61,7 @@ protected:
     sf::Color colour_m;
     float size_m; // Length of the sides of the square
     float x_m, y_m, x_speed_m, y_speed_m;
+    float x_start_m, y_start_m;
     
 
 

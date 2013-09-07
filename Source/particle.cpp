@@ -13,6 +13,8 @@ Particle::Particle()
 
     x_m = 0.0f;
     y_m = 0.0f;
+    x_start_m = 0.0f;
+    y_start_m = 0.0f;
     x_speed_m = 0.0f;
     y_speed_m = 0.0f;
 }
@@ -29,15 +31,20 @@ void Particle::Create(sf::Color colour_p, float x_p, float y_p, float x_speed_p,
     size_m = 2.0f;
     x_m = x_p;
     y_m = y_p;
+    x_start_m = x_p;
+    y_start_m = y_p;
     x_speed_m = x_speed_p;
     y_speed_m = y_speed_p;
 
 
     // Mutate the colour slightly
-    //GenerateColourMod(colour_m.r);
-    //GenerateColourMod(colour_m.g);
-    //GenerateColourMod(colour_m.b);
-    //GenerateColourMod(colour_m.a);
+    GenerateColourMod(colour_m.r);
+    GenerateColourMod(colour_m.g);
+    GenerateColourMod(colour_m.b);
+    GenerateColourMod(colour_m.a);
+
+    // Generate a random size
+    GenerateSizeMod(size_m);
 
 }
 
@@ -63,6 +70,13 @@ void Particle::Update()
     // Move particle
     x_m += x_speed_m;
     y_m += y_speed_m;
+
+    // Reset position if dead
+    if(IsDead())
+    {
+        x_m = x_start_m;
+        y_m = y_start_m;
+    }
 }
 
 
