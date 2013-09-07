@@ -33,30 +33,29 @@ void Weather::StartWeather(WEATHER_TYPE type_p)
 
 
     sf::Color col;
+    float base_speed;
+    float max_size;
 
-    /*
     switch(current_weather_type_m)
     {
         case W_RAIN:
-            col.r = 27;
-            col.g = 126;
-            col.b - 224;
+            col = sf::Color::Blue;
+            base_speed = (float)PARTICLE_BASE_SPEED_RAIN;
+            max_size = (float)PARTICLE_MAX_SIZE_RAIN;
         break;
 
         case W_SNOW:
-            col.r = 227;
-            col.g = 227;
-            col.b - 227;
+            col = sf::Color::White;
+            base_speed = (float)PARTICLE_BASE_SPEED_SNOW;
+            max_size = (float)PARTICLE_MAX_SIZE_SNOW;
         break;
 
         case W_SAND:
-            col.r = 214;
-            col.g = 203;
-            col.b - 118;
+            col = sf::Color::Yellow;
+            base_speed = (float)PARTICLE_BASE_SPEED_SAND;
+            max_size = (float)PARTICLE_MAX_SIZE_SAND;
         break;
     }
-    */
-    col = sf::Color::Blue;
 
 
     int counter = 0;
@@ -74,7 +73,7 @@ void Weather::StartWeather(WEATHER_TYPE type_p)
             y_spawn = (rand() % 608) - 64;
         }
 
-        Particle np(col,x_spawn,y_spawn,4,4);
+        Particle np(col,x_spawn,y_spawn,base_speed,max_size);
         particles_m.push_back(np);
 
         ++ counter;
@@ -144,6 +143,25 @@ void Weather::Draw()
 
     if(!running_m)
         return;
+
+
+
+    // Draw a hue
+    sf::Color col;
+
+    if(current_weather_type_m == W_RAIN)
+        col = sf::Color::Blue;
+    else if(current_weather_type_m == W_SAND)
+        col = sf::Color::Yellow;
+    else if(current_weather_type_m == W_SNOW)
+        col = sf::Color::White;
+
+    col.a = 40;
+
+    sf::RectangleShape hue(sf::Vector2f(640, 480));
+    hue.setFillColor(col);
+    engine_m->sfml_window_m.draw(hue);
+
 
     
     for(unsigned int p=0; p<particle_count_m; p++)

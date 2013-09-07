@@ -21,8 +21,15 @@
 
 #define SPAWN_TIMER_LIMIT 50
 
-#define PARTICLE_COLOUR_VARIATION 7
-#define PARTICLE_MAX_SIZE 20
+#define PARTICLE_COLOUR_VARIATION 20
+
+#define PARTICLE_BASE_SPEED_RAIN 8
+#define PARTICLE_BASE_SPEED_SAND 6
+#define PARTICLE_BASE_SPEED_SNOW 2
+
+#define PARTICLE_MAX_SIZE_RAIN 5
+#define PARTICLE_MAX_SIZE_SAND 4
+#define PARTICLE_MAX_SIZE_SNOW 4
 
 
 
@@ -47,9 +54,9 @@ class Particle
 public:
 
     Particle();
-    Particle(sf::Color colour_p, float x_p, float y_p, float x_speed_p, float y_speed_p); // Calls Create()
+    Particle(sf::Color colour_p, float x_p, float y_p, float base_speed_p, float max_size_p); // Calls Create()
 
-    void Create(sf::Color colour_p, float x_p, float y_p, float x_speed_p, float y_speed_p);
+    void Create(sf::Color colour_p, float x_p, float y_p, float base_speed_p, float max_size_p);
     bool IsDead();
 
     void Update();
@@ -60,6 +67,7 @@ protected:
 
     sf::Color colour_m;
     float size_m; // Length of the sides of the square
+    float max_size_m;
     float x_m, y_m, x_speed_m, y_speed_m;
     float x_start_m, y_start_m;
     
