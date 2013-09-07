@@ -43,8 +43,17 @@ Level::Level(std::string filename_p, Engine* engine_p)
     debug_view_m = false;
 
     // Save engine pointer and spit out errors
+    /*
+        WARNING!!!!! BAD DESIGN!!!!!
+
+        
+        Do not just update this method with engine pointer setting.
+        The method below it needs to be updated as well!!
+
+    */
     IsPointerNull((void*)engine_p,"Level::Level()");
     engine_m = engine_p;
+    weather.SetEngine(engine_p);
 
     LoadFromFile(filename_p, engine_p);
 }
@@ -68,6 +77,7 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
     // Save engine pointer and spit out errors
     IsPointerNull((void*)engine_p,"Level::Level()");
     engine_m = engine_p;
+    weather.SetEngine(engine_p);
 
 
     // Open the level file
@@ -285,6 +295,8 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
 //
 void Level::Clear()
 {
+    // Stop weather
+    weather.StopWeather();
 
     // Reset tiles
     for(int y=0; y<MAP_HEIGHT; y++)
@@ -365,6 +377,14 @@ void Level::EventsLoop(sf::Event ee)
     if(ee.type == sf::Event::KeyPressed && ee.key.code == sf::Keyboard::D)
         ToggleDebugView();
 
+    if(ee.type == sf::Event::KeyPressed && ee.key.code == sf::Keyboard::W)
+    {
+        if(weather.IsPlaying() == W_NONE)
+            weather.StartWeather(W_RAIN);
+        else
+            weather.StopWeather();
+    }
+
     // Handle all entity events
     for(unsigned int e=0; e<entities_m.size(); e++)
         entities_m[e]->EventsLoop(ee);
@@ -386,6 +406,9 @@ void Level::Update()
     // Update all entities
     for(unsigned int e=0; e<entities_m.size(); e++)
         entities_m[e]->Update();
+
+    // Update weather system
+    weather.Update();
 
 }
 
@@ -453,6 +476,10 @@ void Level::Draw()
             }
         }
     }
+
+
+    // Draw weather
+    weather.Draw();
 
 }
 

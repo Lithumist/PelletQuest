@@ -15,6 +15,7 @@
 #include "entity.h"
 #include "path.h"
 #include "base.h"
+#include "weather.h"
 
 #include <vector>
 #include <string>
@@ -121,6 +122,16 @@ protected:
     // The collision map
     CollisionMap collision_map_m;
     bool generated_collision_map_m; // if the collision map is valid
+
+
+
+
+    // ###############
+    // Engine Pointer
+    // ###############
+
+    // The weather system
+    Weather weather;
 
 
 

@@ -43,6 +43,12 @@
     <Filter Include="Source Files\States\Gameplay\enemies">
       <UniqueIdentifier>{38ad9fc1-f13c-409d-a390-c960836e7ef0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\States\Gameplay\level">
+      <UniqueIdentifier>{926cbba4-12a0-4a14-bfbd-ebf53bc50649}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\States\Gameplay\level">
+      <UniqueIdentifier>{5eef6c80-f9ec-4f75-8e39-b900a21ba148}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\main.cpp">
@@ -60,9 +66,6 @@
     <ClCompile Include="..\Source\state_gameplay.cpp">
       <Filter>Source Files\States\Gameplay</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\level.cpp">
-      <Filter>Source Files\States\Gameplay</Filter>
-    </ClCompile>
     <ClCompile Include="..\Source\player.cpp">
       <Filter>Source Files\States\Gameplay</Filter>
     </ClCompile>
@@ -78,6 +81,15 @@
     <ClCompile Include="..\Source\enemy_test.cpp">
       <Filter>Source Files\States\Gameplay\enemies</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\level.cpp">
+      <Filter>Source Files\States\Gameplay\level</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\particle.cpp">
+      <Filter>Source Files\States\Gameplay\level</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\weather.cpp">
+      <Filter>Source Files\States\Gameplay\level</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\engine.h">
@@ -90,9 +102,6 @@
       <Filter>Header Files\States\Main Menu</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\state_gameplay.h">
-      <Filter>Header Files\States\Gameplay</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\level.h">
       <Filter>Header Files\States\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\player.h">
@@ -112,6 +121,12 @@
     </ClInclude>
     <ClInclude Include="..\Source\enemy_test.h">
       <Filter>Header Files\States\Gameplay\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\level.h">
+      <Filter>Header Files\States\Gameplay\level</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\weather.h">
+      <Filter>Header Files\States\Gameplay\level</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

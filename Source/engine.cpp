@@ -4,6 +4,8 @@
 #include "state.h"
 
 #include <iostream>
+#include <cstdlib>
+#include <time.h>
 
 
 
@@ -36,6 +38,9 @@ Engine::Engine()
 //
 int Engine::Run(State* initial_state_p)
 {
+    // Seed random number generator
+    srand(time(NIL));
+
     // Initialize SFML
     sfml_window_m.create(sf::VideoMode(640,480,32),"Pellet Quest!",sf::Style::Close);
     sfml_window_m.setFramerateLimit(60);
