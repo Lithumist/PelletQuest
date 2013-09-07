@@ -68,7 +68,7 @@ protected:
 
     void GenerateColourMod(sf::Uint8& colour_byte_p);
     void GenerateSizeMod(float& size_p);
-    float GenerateSpeedMod();
+    void GenerateSpeedMod(float& speed);
 
 
 };

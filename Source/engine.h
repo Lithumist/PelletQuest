@@ -14,6 +14,14 @@
 
 #include "SFML/Graphics.hpp"
 
+
+
+
+#define SCREENSHOT_BUTTON sf::Keyboard::C
+
+
+
+
 class State;
 
 class Engine
@@ -49,6 +57,9 @@ public:
 
     // Returns the error texture
     sf::Texture* GetErrorTexture();
+
+    // Saves screenshot of screen
+    void TakeScreenshot();
 
 
 

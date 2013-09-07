@@ -6,6 +6,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <time.h>
+#include <ctime>
+#include <sstream>
 
 
 
@@ -62,6 +64,7 @@ int Engine::Run(State* initial_state_p)
     while(running_m)
     {
         State* current_state = states_m.back();
+
         current_state->Events();
         current_state->U(); // update
 
@@ -182,4 +185,33 @@ sf::Texture* Engine::GetTexture(std::string filename_p)
 sf::Texture* Engine::GetErrorTexture()
 {
     return &textures_m["resources/textures/error.png"];
+}
+
+
+
+// Engine::TakeScreenshot()
+//
+void Engine::TakeScreenshot()
+{
+    // Capture screen
+    sf::Image scr;
+    scr = sfml_window_m.capture();
+
+    // Generate date string
+    time_t t = time(0);
+    struct tm * now = localtime(&t);
+    std::stringstream dt;
+    dt << now->tm_sec;
+    dt << "_";
+    dt << now->tm_min;
+    dt << "_";
+    dt << now->tm_hour;
+    dt << "_";
+    dt << now->tm_mday;
+    dt << "_";
+    dt << (now->tm_year + 1900);
+    const std::string d = dt.str();
+
+    // Save image file
+    scr.saveToFile("screenshots/screenshot_" + d + ".png");
 }

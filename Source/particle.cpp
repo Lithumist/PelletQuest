@@ -46,6 +46,10 @@ void Particle::Create(sf::Color colour_p, float x_p, float y_p, float x_speed_p,
     // Generate a random size
     GenerateSizeMod(size_m);
 
+    // Mutate the speed
+    GenerateSpeedMod(x_speed_m);
+    GenerateSpeedMod(y_speed_m);
+
 }
 
 
@@ -140,8 +144,12 @@ void Particle::GenerateSizeMod(float& size_p)
 }
 
 
-float Particle::GenerateSpeedMod()
+void Particle::GenerateSpeedMod(float& speed)
 {
-    // TODO: Finish this
-    return 1.0f;
+    // TODO: Clean up this code and make it readable. (May require rewrite)
+    float mod = (float)rand()/(float)RAND_MAX;
+    mod -= 0.5;
+    mod *= 2;
+
+    speed += mod;
 }
