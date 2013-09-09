@@ -380,7 +380,7 @@ void Level::EventsLoop(sf::Event ee)
     if(ee.type == sf::Event::KeyPressed && ee.key.code == sf::Keyboard::W)
     {
         if(weather.IsPlaying() == W_NONE)
-            weather.StartWeather(W_SNOW);
+            weather.StartWeather(W_RAIN);
         else
             weather.StopWeather();
     }
