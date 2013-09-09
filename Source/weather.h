@@ -41,7 +41,7 @@
 
 
 
-enum WEATHER_TYPE {W_NONE, W_RAIN, W_SNOW, W_SAND};
+enum WEATHER_TYPE {WS, W_NONE, W_RAIN, W_SNOW, W_SAND, WE};
 
 
 

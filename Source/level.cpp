@@ -379,10 +379,24 @@ void Level::EventsLoop(sf::Event ee)
 
     if(ee.type == sf::Event::KeyPressed && ee.key.code == sf::Keyboard::W)
     {
+        /*
         if(weather.IsPlaying() == W_NONE)
-            weather.StartWeather(W_SAND);
+            weather.StartWeather(W_NONE);
         else
             weather.StopWeather();
+        */
+        size_t we = weather.IsPlaying();
+        ++ we;
+        if(we == WE)
+        {
+            we = W_NONE;
+            weather.StopWeather();
+        }
+        else
+        {
+            weather.StopWeather();
+            weather.StartWeather((WEATHER_TYPE)we);
+        }
     }
 
     // Handle all entity events
