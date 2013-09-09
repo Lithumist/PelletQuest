@@ -31,5 +31,5 @@
 none
 none
 none
-resources/maps/test.txt
+resources/maps/test.txt n
 ENEMY_TEST 0 0

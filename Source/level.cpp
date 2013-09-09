@@ -296,7 +296,7 @@ bool Level::LoadFromFile(std::string filename_p, Engine* engine_p)
 void Level::Clear()
 {
     // Stop weather
-    weather.StopWeather();
+    //weather.StopWeather();
 
     // Reset tiles
     for(int y=0; y<MAP_HEIGHT; y++)
@@ -380,7 +380,7 @@ void Level::EventsLoop(sf::Event ee)
     if(ee.type == sf::Event::KeyPressed && ee.key.code == sf::Keyboard::W)
     {
         if(weather.IsPlaying() == W_NONE)
-            weather.StartWeather(W_RAIN);
+            weather.StartWeather(W_SAND);
         else
             weather.StopWeather();
     }
